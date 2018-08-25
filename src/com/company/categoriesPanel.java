@@ -23,7 +23,7 @@ public class categoriesPanel {
     static JPanel getPanel() {
         JPanel panel = new JPanel();
         categoriesMap = Swing.user.getOutgoingsCategories();
-        panel.setBackground(Color.ORANGE);
+        panel.setBackground(Color.GRAY);
         panel.setLayout(new GridBagLayout());
         JLabel categoriesLabel = new JLabel("Categories");
         CButtons = new HashMap<>();
