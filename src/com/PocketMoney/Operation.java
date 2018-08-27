@@ -22,6 +22,9 @@ abstract public class Operation implements Serializable {
         date=new Date();
     }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public double getSum() {
         return sum;

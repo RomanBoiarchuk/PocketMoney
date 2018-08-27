@@ -1,12 +1,13 @@
 package com.company;
 import com.PocketMoney.*;
+import javafx.print.Collation;
 
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 //        User user=new User("Roman");
 //        user.addIncome("Scholarship","Card",1300);
 //        List<User> users=new ArrayList<>();
@@ -524,22 +525,13 @@ public class Main {
         }
     }
 
-        public static List<User> readUsersFromFile () {
+        public static List<User> readUsersFromFile () throws Exception {
             List<User> _users=null;
-            try {
                 FileInputStream fileInputStream = new FileInputStream("users");
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 _users = (List<User>) objectInputStream.readObject();
                 objectInputStream.close();
                 return _users;
-            } catch (IOException e) {
-                System.out.println(e);
-                System.exit(0);
-            } catch (ClassNotFoundException e) {
-                System.out.println(e);
-                System.exit(0);
-            }
-            return _users;
         }
 
         public static byte readByte(String message){
@@ -604,5 +596,11 @@ public class Main {
             }
         }
         return value;
+    }
+    public static void pushForward(List<User> users,User user){
+        List<User> newList=new ArrayList<>(users);
+        users.clear();
+        users.add(user);
+        users.addAll(newList);
     }
 }

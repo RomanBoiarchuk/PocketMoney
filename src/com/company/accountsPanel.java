@@ -287,6 +287,7 @@ public class accountsPanel {
             Dimension dimension=toolkit.getScreenSize();
             int height=300;
             int width=500;
+            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
             cancel.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -357,7 +358,6 @@ public class accountsPanel {
                     }
                 }
             });
-            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
         }
     }
     static class AddTransfer extends JDialog{

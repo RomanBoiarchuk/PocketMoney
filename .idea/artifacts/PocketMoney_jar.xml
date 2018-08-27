@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PocketMoney:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PocketMoney_jar</output-path>
+    <root id="archive" name="PocketMoney.jar">
+      <element id="module-output" name="PocketMoney" />
+    </root>
+  </artifact>
+</component>

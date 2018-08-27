@@ -174,6 +174,7 @@ public class operationsPanel {
                         categoriesPanel.categoriesMap.replace(outgoing.getGoal(),categoriesPanel.categoriesMap.get(outgoing.getGoal())-outgoing.getSum());
                         categoriesPanel.CButtons.get(outgoing.getGoal()).setText(outgoing.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
                         OToolbar.revalidate();
+                        Swing.frame.revalidate();
                         Main.writeUsersInFile(Swing.users);
                     }
                 }
@@ -257,6 +258,7 @@ public class operationsPanel {
                                             OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                             sourceLabel.setText(((Income) operation).getSource());
                                             Main.writeUsersInFile(Swing.users);
+                                            Swing.operationsPanel.revalidate();
                                             dispose();
                                         }
                                     }
@@ -319,6 +321,8 @@ public class operationsPanel {
                                             accountLabel.setText(((Income) operation).getAccount());
                                             accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                             accountsPanel.AButtons.get(((Income) operation).getAccount()).setText(((Income) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income) operation).getAccount()))+" UAH");
+                                            Swing.accountsPanel.revalidate();
+                                            Swing.operationsPanel.revalidate();
                                             Main.writeUsersInFile(Swing.users);
                                         }
                                             dispose();
@@ -391,6 +395,9 @@ public class operationsPanel {
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(((Outgoing) operation).getAccount()).setText(((Outgoing) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing) operation).getAccount()))+" UAH");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.accountsPanel.revalidate();
+                                                Swing.categoriesPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                             }
                                             dispose();
                                         }
@@ -458,6 +465,8 @@ public class operationsPanel {
                                                 categoriesPanel.CButtons.get(oldCategory).setText(oldCategory + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(oldCategory)) + " UAH");
                                                 categoriesPanel.CButtons.get(newCategory).setText(newCategory + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(newCategory)) + " UAH");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.categoriesPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                             }
                                             dispose();
                                         }
@@ -532,6 +541,8 @@ public class operationsPanel {
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.accountsPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                             }
                                             dispose();
                                         }
@@ -597,6 +608,8 @@ public class operationsPanel {
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.accountsPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                             }
                                             dispose();
                                         }
@@ -647,8 +660,8 @@ public class operationsPanel {
                             sumField.setAutoscrolls(false);
                             add(new JLabel("Sum"),new GridBagConstraints(0,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                                     new Insets(0,0,0,0),0,0));
-                            add(sumField,new GridBagConstraints(0,1,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                    new Insets(20,0,0,0),0,0));
+                            add(sumField,new GridBagConstraints(1,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(0,0,0,0),0,0));
                             JButton cancelButton=new JButton("Cancel");
                             cancelButton.addActionListener(new ActionListener() {
                                 @Override
@@ -674,10 +687,13 @@ public class operationsPanel {
                                         if (operation.getClass().equals(Income.class)){
                                             Swing.user.setIncomeSum(IToolbar.getComponentIndex(OperationsButtons.get(operation)),newSum);
                                             accountsPanel.AButtons.get(((Income)operation).getAccount()).setText(((Income)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income)operation).getAccount()))+" UAH");
+                                            accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                                             sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
                                             String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",newSum)+" UAH";
                                             OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                             Main.writeUsersInFile(Swing.users);
+                                            Swing.accountsPanel.revalidate();
+                                            Swing.operationsPanel.revalidate();
                                             dispose();
                                         }
                                         else
@@ -685,12 +701,16 @@ public class operationsPanel {
                                             if (operation.getClass().equals(Outgoing.class)){
                                                 Swing.user.setOutgoingSum(OToolbar.getComponentIndex(OperationsButtons.get(operation)),newSum);
                                                 accountsPanel.AButtons.get(((Outgoing)operation).getAccount()).setText(((Outgoing)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing)operation).getAccount()))+" UAH");
+                                                accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                                                 sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
                                                 String line=operation.getDate()+"\n"+"from \""+((Outgoing)operation).getAccount()+"\" to \""+((Outgoing)operation).getGoal()+"\": "+String.format("%.2f",newSum)+" UAH";
                                                 OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                                 categoriesPanel.categoriesMap.replace(((Outgoing)operation).getGoal(),categoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())-oldSum+newSum);
                                                 categoriesPanel.CButtons.get(((Outgoing)operation).getGoal()).setText(((Outgoing)operation).getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())) + " UAH");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.accountsPanel.revalidate();
+                                                Swing.categoriesPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                                 dispose();
                                             }
                                             else
@@ -702,6 +722,8 @@ public class operationsPanel {
                                                 String line=operation.getDate()+"\n"+"from \""+((Transfer)operation).getAccountOut()+"\" to \""+((Transfer)operation).getAccountIn()+"\": "+String.format("%.2f",newSum)+" UAH";
                                                 OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                                 Main.writeUsersInFile(Swing.users);
+                                                Swing.accountsPanel.revalidate();
+                                                Swing.operationsPanel.revalidate();
                                                 dispose();
                                             }
                                         }
@@ -719,19 +741,82 @@ public class operationsPanel {
             });
             add(editSumButton,new GridBagConstraints(2,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(30,15,0,0),0,0));
-            if (operation.getComment()!=null){
-                JTextArea commentArea=new JTextArea(3,5);
-                commentArea.setText(operation.getComment());
-                commentArea.setLineWrap(true);
-                commentArea.setEditable(false);
-                JScrollPane commentPane=new JScrollPane(commentArea);
-                add(commentPane,new GridBagConstraints(0,4,2,2,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                        new Insets(30,0,0,0),0,30));
-                JButton editCommentButton=new JButton("edit");
+            JButton addCommentButton=new JButton("Add comment");
+            JTextArea commentArea=new JTextArea(3,5);
+            commentArea.setText(operation.getComment());
+            commentArea.setLineWrap(true);
+            commentArea.setEditable(false);
+            JScrollPane commentPane=new JScrollPane(commentArea);
+            JButton editCommentButton=new JButton("edit");
+            JButton deleteCommentButton=new JButton("delete");
+            JDialog thisDialog=this;
+            if (operation.getComment()!=null) {
+                add(commentPane, new GridBagConstraints(0, 4, 2, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                        new Insets(30, 0, 0, 0), 0, 30));
+                add(editCommentButton,new GridBagConstraints(2,4,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                        new Insets(30,15,0,0),0,0));
+                add(deleteCommentButton,new GridBagConstraints(2,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                        new Insets(0,15,0,0),0,0));
+            }
+            else
+                add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                        new Insets(30,0,0,30),0,0));
+            addCommentButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JDialog dialog=new JDialog(Swing.frame,"Operation",true){
+                        {
+                            Toolkit toolkit = Toolkit.getDefaultToolkit();
+                            Dimension dimension = toolkit.getScreenSize();
+                            int height = 200;
+                            int width = 300;
+                            setBounds((dimension.width - width) / 2, (dimension.height - height) / 2, width, height);
+                            setLayout(new GridBagLayout());
+                            JTextArea newCommentArea=new JTextArea(3,5);
+                            newCommentArea.setLineWrap(true);
+                            JScrollPane newCommentPane=new JScrollPane(newCommentArea);
+                            add(newCommentPane,new GridBagConstraints(0,0,2,2,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(0,0,0,0),0,30));
+                            JButton cancelButton=new JButton("Cancel");
+                            cancelButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    dispose();
+                                }
+                            });
+                            JButton confirmButton=new JButton("Confirm");
+                            confirmButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    if (!newCommentArea.getText().trim().equals("")){
+                                        operation.setComment(newCommentArea.getText());
+                                        thisDialog.add(commentPane, new GridBagConstraints(0, 4, 2, 2, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                                                new Insets(30, 0, 0, 0), 0, 30));
+                                        commentArea.setText(newCommentArea.getText());
+                                        thisDialog.add(editCommentButton,new GridBagConstraints(2,4,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                                new Insets(30,15,0,0),0,0));
+                                        thisDialog.add(deleteCommentButton,new GridBagConstraints(2,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                                new Insets(0,15,0,0),0,0));
+                                        thisDialog.remove(addCommentButton);
+                                        thisDialog.revalidate();
+                                        Main.writeUsersInFile(Swing.users);
+                                    }
+                                    dispose();
+                                }
+                            });
+                            add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,0,0,0),0,0));
+                            add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,20,0,0),0,0));
+                        }
+                    };
+                    dialog.setVisible(true);
+                }
+            });
                 editCommentButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        JDialog dialog=new JDialog(){
+                        JDialog dialog=new JDialog(Swing.frame,"Operation",true){
                             {
                                 Toolkit toolkit = Toolkit.getDefaultToolkit();
                                 Dimension dimension = toolkit.getScreenSize();
@@ -739,11 +824,11 @@ public class operationsPanel {
                                 int width = 300;
                                 setBounds((dimension.width - width) / 2, (dimension.height - height) / 2, width, height);
                                 setLayout(new GridBagLayout());
-                                JTextArea commentArea=new JTextArea(3,5);
-                                commentArea.setText(operation.getComment());
-                                commentArea.setLineWrap(true);
-                                JScrollPane commentPane=new JScrollPane(commentArea);
-                                add(commentPane,new GridBagConstraints(0,0,2,2,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                JTextArea newCommentArea=new JTextArea(3,5);
+                                newCommentArea.setText(operation.getComment());
+                                newCommentArea.setLineWrap(true);
+                                JScrollPane newCommentPane=new JScrollPane(newCommentArea);
+                                add(newCommentPane,new GridBagConstraints(0,0,2,2,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                                         new Insets(0,0,0,0),0,30));
                                 JButton cancelButton=new JButton("Cancel");
                                 cancelButton.addActionListener(new ActionListener() {
@@ -756,9 +841,26 @@ public class operationsPanel {
                                 confirmButton.addActionListener(new ActionListener() {
                                     @Override
                                     public void actionPerformed(ActionEvent e) {
-                                        if (!commentArea.getText().equals(operation.getComment())){
-
+                                        if (!newCommentArea.getText().equals(operation.getComment())){
+                                            if (!newCommentArea.getText().trim().equals("")){
+                                                operation.setComment(newCommentArea.getText());
+                                                commentArea.setText(newCommentArea.getText());
+                                                Main.writeUsersInFile(Swing.users);
+                                            }
+                                            else
+                                            {
+                                                operation.setComment(null);
+                                                thisDialog.remove(commentPane);
+                                                thisDialog.remove(editCommentButton);
+                                                thisDialog.remove(deleteCommentButton);
+                                                thisDialog.remove(commentPane);
+                                                thisDialog.add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                                        new Insets(30,0,0,30),0,0));
+                                                thisDialog.revalidate();
+                                                Main.writeUsersInFile(Swing.users);
+                                            }
                                         }
+                                        dispose();
                                     }
                                 });
                                 add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
@@ -770,18 +872,24 @@ public class operationsPanel {
                         dialog.setVisible(true);
                     }
                 });
-                JButton deleteCommentButton=new JButton("delete");
-                add(editCommentButton,new GridBagConstraints(2,4,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                        new Insets(30,15,0,0),0,0));
-                add(deleteCommentButton,new GridBagConstraints(2,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                        new Insets(0,15,0,0),0,0));
-            }
-            else
-            {
-                JButton addCommentButton=new JButton("Add comment");
-                add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                        new Insets(30,0,0,30),0,0));
-            }
+                deleteCommentButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this comment?",
+                                "Delete comment",JOptionPane.YES_NO_OPTION);
+                        if (option==0){
+                            operation.setComment(null);
+                            thisDialog.remove(commentPane);
+                            thisDialog.remove(editCommentButton);
+                            thisDialog.remove(deleteCommentButton);
+                            thisDialog.remove(commentPane);
+                            thisDialog.add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(30,0,0,30),0,0));
+                            thisDialog.revalidate();
+                            Main.writeUsersInFile(Swing.users);
+                        }
+                    }
+                });
             JButton okButton=new JButton("OK");
             okButton.addActionListener(new ActionListener() {
                 @Override
