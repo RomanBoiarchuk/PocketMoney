@@ -903,5 +903,4 @@ public class operationsPanel {
                 editSumButton.setEnabled(false);
         }
     }
-
 }
