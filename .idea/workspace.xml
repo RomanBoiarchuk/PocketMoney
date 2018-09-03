@@ -7,17 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af7b434-eb77-49d2-904c-d07a9c2e60f9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$3$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$5$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$5$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$6$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$6$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$7$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$7$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$8$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/operationsPanel$OperationsDetails$8$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/operationsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/operationsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,20 +34,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10183">
-              <caret line="604" column="5" selection-start-line="604" selection-start-column="5" selection-end-line="604" selection-end-column="5" />
+            <state relative-caret-position="527">
+              <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="operationsPanel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="operationsPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="529">
-              <caret line="902" column="48" lean-forward="true" selection-start-line="902" selection-start-column="48" selection-end-line="902" selection-end-column="48" />
+              <caret line="902" column="48" selection-start-line="902" selection-start-column="48" selection-end-line="902" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -124,10 +114,10 @@
         <option value="$PROJECT_DIR$/src/com/PocketMoney/User.java" />
         <option value="$PROJECT_DIR$/src/com/company/categoriesPanel.java" />
         <option value="$PROJECT_DIR$/src/com/PocketMoney/Operation.java" />
-        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/com/company/accountsPanel.java" />
         <option value="$PROJECT_DIR$/src/com/company/Swing.java" />
         <option value="$PROJECT_DIR$/src/com/company/operationsPanel.java" />
+        <option value="$PROJECT_DIR$/src/com/company/Main.java" />
       </list>
     </option>
   </component>
@@ -151,7 +141,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,8 +178,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,17 +208,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Swing">
-    <configuration name="Main" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
-      <module name="PocketMoney" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.company.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
+  <component name="RunManager">
     <configuration name="Swing" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.company.Swing" />
       <module name="PocketMoney" />
@@ -236,10 +216,6 @@
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
     </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Swing" />
-    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -350,11 +326,12 @@
       <workItem from="1534353589598" duration="880000" />
       <workItem from="1535536112988" duration="277000" />
       <workItem from="1535536587000" duration="91000" />
+      <workItem from="1535965171851" duration="296000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298614000" />
+    <option name="totallyTimeSpent" value="298910000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -390,17 +367,17 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.16204691" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -410,10 +387,10 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
@@ -726,13 +703,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10183">
-          <caret line="604" column="5" selection-start-line="604" selection-start-column="5" selection-end-line="604" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Swing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -753,7 +723,14 @@
     <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="529">
-          <caret line="902" column="48" lean-forward="true" selection-start-line="902" selection-start-column="48" selection-end-line="902" selection-end-column="48" />
+          <caret line="902" column="48" selection-start-line="902" selection-start-column="48" selection-end-line="902" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
         </state>
       </provider>
     </entry>
