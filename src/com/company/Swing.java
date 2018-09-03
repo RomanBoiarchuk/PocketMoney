@@ -14,9 +14,10 @@ import java.util.Map;
 
 public class Swing {
     static List<User> users;
-    static JButton unableButton;
-    static User user;
+    static JButton unableButton; // to switch from one panel to another and set current panel button unable
+    static User user; //current user
     static JFrame frame;
+    // panels, frame
     static JPanel accountsPanel;
     static JPanel categoriesPanel;
     static JPanel operationsPanel;
@@ -24,14 +25,17 @@ public class Swing {
     static JPanel mainPanel;
     static JButton categoriesButton;
     public static void main(String[] args) {
+        // looking for file with users
         try {
             users = Main.readUsersFromFile();
         }
         catch (Exception e){
             users=new ArrayList<>();
         }
+        // check whether there are any users
         if (users.isEmpty()){
             JOptionPane.showMessageDialog(frame,"You don't have any user. Add one!");
+            // add new user if there are no users yet
             if (!addUser()){
                 System.exit(0);
             }

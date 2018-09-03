@@ -10,7 +10,7 @@ public class Main {
 
     public static void writeUsersInFile(List<User> users) {
         FileOutputStream fileOutputStream;
-        ObjectOutputStream objectOutputStream = null;
+        ObjectOutputStream objectOutputStream;
         try {
             fileOutputStream = new FileOutputStream("users");
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -21,7 +21,7 @@ public class Main {
         }
     }
         public static List<User> readUsersFromFile () throws Exception {
-            List<User> _users=null;
+            List<User> _users;
                 FileInputStream fileInputStream = new FileInputStream("users");
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 _users = (List<User>) objectInputStream.readObject();

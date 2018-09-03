@@ -60,21 +60,18 @@ public class operationsPanel {
             });
             popupMenu=new JPopupMenu();
             deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                            "Delete operation",JOptionPane.YES_NO_OPTION);
-                    if (option==0){
-                        Income income=(Income)ItemsOperations.get(e.getSource());
-                        Swing.user.deleteIncome(IToolbar.getComponentIndex(OperationsButtons.get(income)));
-                        IToolbar.remove(OperationsButtons.get(income));
-                        IButtons.remove(income);
-                        accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                        accountsPanel.AButtons.get(income.getAccount()).setText(income.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income.getAccount()))+" UAH");
-                        IToolbar.revalidate();
-                        Main.writeUsersInFile(Swing.users);
-                    }
+            deleteItem.addActionListener(e -> {
+                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
+                        "Delete operation",JOptionPane.YES_NO_OPTION);
+                if (option==0){
+                    Income income1 =(Income)ItemsOperations.get(e.getSource());
+                    Swing.user.deleteIncome(IToolbar.getComponentIndex(OperationsButtons.get(income1)));
+                    IToolbar.remove(OperationsButtons.get(income1));
+                    IButtons.remove(income1);
+                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+                    accountsPanel.AButtons.get(income1.getAccount()).setText(income1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income1.getAccount()))+" UAH");
+                    IToolbar.revalidate();
+                    Main.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
@@ -100,31 +97,25 @@ public class operationsPanel {
             transfer=Swing.user.getTransfer(i);
                 line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
             tempButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-            tempButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getTransfer(TToolbar.getComponentIndex((JButton)e.getSource())));
-                    operationsDetails.setVisible(true);
-                }
+            tempButton.addActionListener(e -> {
+                OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getTransfer(TToolbar.getComponentIndex((JButton)e.getSource())));
+                operationsDetails.setVisible(true);
             });
             popupMenu=new JPopupMenu();
             deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                            "Delete operation",JOptionPane.YES_NO_OPTION);
-                    if (option==0){
-                        Transfer transfer=(Transfer) ItemsOperations.get(e.getSource());
-                        Swing.user.deleteTransfer(TToolbar.getComponentIndex(OperationsButtons.get(transfer)));
-                        TToolbar.remove(OperationsButtons.get(transfer));
-                        TButtons.remove(transfer);
-                        accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                        accountsPanel.AButtons.get(transfer.getAccountIn()).setText(transfer.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountIn()))+" UAH");
-                        accountsPanel.AButtons.get(transfer.getAccountOut()).setText(transfer.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountOut()))+" UAH");
-                        TToolbar.revalidate();
-                        Main.writeUsersInFile(Swing.users);
-                    }
+            deleteItem.addActionListener(e -> {
+                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
+                        "Delete operation",JOptionPane.YES_NO_OPTION);
+                if (option==0){
+                    Transfer transfer1 =(Transfer) ItemsOperations.get(e.getSource());
+                    Swing.user.deleteTransfer(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
+                    TToolbar.remove(OperationsButtons.get(transfer1));
+                    TButtons.remove(transfer1);
+                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+                    accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
+                    accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
+                    TToolbar.revalidate();
+                    Main.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
@@ -150,33 +141,27 @@ public class operationsPanel {
             outgoing=Swing.user.getOutgoing(i);
                 line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
             tempButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-            tempButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getOutgoing(OToolbar.getComponentIndex((JButton)e.getSource())));
-                    operationsDetails.setVisible(true);
-                }
+            tempButton.addActionListener(e -> {
+                OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getOutgoing(OToolbar.getComponentIndex((JButton)e.getSource())));
+                operationsDetails.setVisible(true);
             });
             popupMenu=new JPopupMenu();
             deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                            "Delete operation",JOptionPane.YES_NO_OPTION);
-                    if (option==0){
-                        Outgoing outgoing=(Outgoing) ItemsOperations.get(e.getSource());
-                        Swing.user.deleteOutgoing(OToolbar.getComponentIndex(OperationsButtons.get(outgoing)));
-                        OToolbar.remove(OperationsButtons.get(outgoing));
-                        OButtons.remove(outgoing);
-                        accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                        accountsPanel.AButtons.get(outgoing.getAccount()).setText(outgoing.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(outgoing.getAccount()))+" UAH");
-                        categoriesPanel.categoriesMap.replace(outgoing.getGoal(),categoriesPanel.categoriesMap.get(outgoing.getGoal())-outgoing.getSum());
-                        categoriesPanel.CButtons.get(outgoing.getGoal()).setText(outgoing.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
-                        OToolbar.revalidate();
-                        Swing.frame.revalidate();
-                        Main.writeUsersInFile(Swing.users);
-                    }
+            deleteItem.addActionListener(e -> {
+                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
+                        "Delete operation",JOptionPane.YES_NO_OPTION);
+                if (option==0){
+                    Outgoing outgoing1 =(Outgoing) ItemsOperations.get(e.getSource());
+                    Swing.user.deleteOutgoing(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
+                    OToolbar.remove(OperationsButtons.get(outgoing1));
+                    OButtons.remove(outgoing1);
+                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+                    accountsPanel.AButtons.get(outgoing1.getAccount()).setText(outgoing1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(outgoing1.getAccount()))+" UAH");
+                    categoriesPanel.categoriesMap.replace(outgoing1.getGoal(),categoriesPanel.categoriesMap.get(outgoing1.getGoal())- outgoing1.getSum());
+                    categoriesPanel.CButtons.get(outgoing1.getGoal()).setText(outgoing1.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing1.getGoal())) + " UAH");
+                    OToolbar.revalidate();
+                    Swing.frame.revalidate();
+                    Main.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
