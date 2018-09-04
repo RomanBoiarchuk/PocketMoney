@@ -9,11 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class operationsPanel {
     static Map<Integer,JButton> OButtons;
@@ -71,7 +68,7 @@ public class operationsPanel {
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                     accountsPanel.AButtons.get(income1.getAccount()).setText(income1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income1.getAccount()))+" UAH");
                     IToolbar.revalidate();
-                    Main.writeUsersInFile(Swing.users);
+                    Functions.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
@@ -115,7 +112,7 @@ public class operationsPanel {
                     accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
                     accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
                     TToolbar.revalidate();
-                    Main.writeUsersInFile(Swing.users);
+                    Functions.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
@@ -161,7 +158,7 @@ public class operationsPanel {
                     categoriesPanel.CButtons.get(outgoing1.getGoal()).setText(outgoing1.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing1.getGoal())) + " UAH");
                     OToolbar.revalidate();
                     Swing.frame.revalidate();
-                    Main.writeUsersInFile(Swing.users);
+                    Functions.writeUsersInFile(Swing.users);
                 }
             });
             popupMenu.add(deleteItem);
@@ -242,7 +239,7 @@ public class operationsPanel {
                                             String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",operation.getSum())+" UAH";
                                             OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                             sourceLabel.setText(((Income) operation).getSource());
-                                            Main.writeUsersInFile(Swing.users);
+                                            Functions.writeUsersInFile(Swing.users);
                                             Swing.operationsPanel.revalidate();
                                             dispose();
                                         }
@@ -308,7 +305,7 @@ public class operationsPanel {
                                             accountsPanel.AButtons.get(((Income) operation).getAccount()).setText(((Income) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income) operation).getAccount()))+" UAH");
                                             Swing.accountsPanel.revalidate();
                                             Swing.operationsPanel.revalidate();
-                                            Main.writeUsersInFile(Swing.users);
+                                            Functions.writeUsersInFile(Swing.users);
                                         }
                                             dispose();
                                     }
@@ -379,7 +376,7 @@ public class operationsPanel {
                                                 accountLabel.setText(((Outgoing) operation).getAccount());
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(((Outgoing) operation).getAccount()).setText(((Outgoing) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing) operation).getAccount()))+" UAH");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.accountsPanel.revalidate();
                                                 Swing.categoriesPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
@@ -449,7 +446,7 @@ public class operationsPanel {
                                                 categoriesPanel.categoriesMap.replace(newCategory,categoriesPanel.categoriesMap.get(newCategory)+operation.getSum());
                                                 categoriesPanel.CButtons.get(oldCategory).setText(oldCategory + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(oldCategory)) + " UAH");
                                                 categoriesPanel.CButtons.get(newCategory).setText(newCategory + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(newCategory)) + " UAH");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.categoriesPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
                                             }
@@ -525,7 +522,7 @@ public class operationsPanel {
                                                 accountOutLabel.setText(newAccount);
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.accountsPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
                                             }
@@ -592,7 +589,7 @@ public class operationsPanel {
                                                 accountInLabel.setText(newAccount);
                                                 accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
                                                 accountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.accountsPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
                                             }
@@ -676,7 +673,7 @@ public class operationsPanel {
                                             sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
                                             String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",newSum)+" UAH";
                                             OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                            Main.writeUsersInFile(Swing.users);
+                                            Functions.writeUsersInFile(Swing.users);
                                             Swing.accountsPanel.revalidate();
                                             Swing.operationsPanel.revalidate();
                                             dispose();
@@ -692,7 +689,7 @@ public class operationsPanel {
                                                 OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                                                 categoriesPanel.categoriesMap.replace(((Outgoing)operation).getGoal(),categoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())-oldSum+newSum);
                                                 categoriesPanel.CButtons.get(((Outgoing)operation).getGoal()).setText(((Outgoing)operation).getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())) + " UAH");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.accountsPanel.revalidate();
                                                 Swing.categoriesPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
@@ -706,7 +703,7 @@ public class operationsPanel {
                                                 sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
                                                 String line=operation.getDate()+"\n"+"from \""+((Transfer)operation).getAccountOut()+"\" to \""+((Transfer)operation).getAccountIn()+"\": "+String.format("%.2f",newSum)+" UAH";
                                                 OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                                 Swing.accountsPanel.revalidate();
                                                 Swing.operationsPanel.revalidate();
                                                 dispose();
@@ -784,7 +781,7 @@ public class operationsPanel {
                                                 new Insets(0,15,0,0),0,0));
                                         thisDialog.remove(addCommentButton);
                                         thisDialog.revalidate();
-                                        Main.writeUsersInFile(Swing.users);
+                                        Functions.writeUsersInFile(Swing.users);
                                     }
                                     dispose();
                                 }
@@ -830,7 +827,7 @@ public class operationsPanel {
                                             if (!newCommentArea.getText().trim().equals("")){
                                                 operation.setComment(newCommentArea.getText());
                                                 commentArea.setText(newCommentArea.getText());
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                             }
                                             else
                                             {
@@ -842,7 +839,7 @@ public class operationsPanel {
                                                 thisDialog.add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                                                         new Insets(30,0,0,30),0,0));
                                                 thisDialog.revalidate();
-                                                Main.writeUsersInFile(Swing.users);
+                                                Functions.writeUsersInFile(Swing.users);
                                             }
                                         }
                                         dispose();
@@ -871,7 +868,7 @@ public class operationsPanel {
                             thisDialog.add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                                     new Insets(30,0,0,30),0,0));
                             thisDialog.revalidate();
-                            Main.writeUsersInFile(Swing.users);
+                            Functions.writeUsersInFile(Swing.users);
                         }
                     }
                 });

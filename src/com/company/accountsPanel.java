@@ -112,7 +112,7 @@ public class accountsPanel {
                         ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
                         balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
                         panel.revalidate();
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         JOptionPane.showMessageDialog(Swing.frame,"Account has been successfully deleted!");
                     }
                 }
@@ -143,7 +143,7 @@ public class accountsPanel {
                     }
                     else {
                         Swing.user.addAccount(name);
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         JButton tempButton = new JButton(name + ": 0.00 UAH");
                         tempButton.setEnabled(false);
                         JPanel tempPanel = new JPanel();
@@ -218,7 +218,7 @@ public class accountsPanel {
                                         ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
                                     balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
                                     panel.revalidate();
-                                    Main.writeUsersInFile(Swing.users);
+                                    Functions.writeUsersInFile(Swing.users);
                                     JOptionPane.showMessageDialog(Swing.frame,"Account has been successfully deleted!");
                                 }
                             }
@@ -335,7 +335,7 @@ public class accountsPanel {
                                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                                     accountsPanel.AButtons.get(income.getAccount()).setText(income.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income.getAccount()))+" UAH");
                                     operationsPanel.IToolbar.revalidate();
-                                    Main.writeUsersInFile(Swing.users);
+                                    Functions.writeUsersInFile(Swing.users);
                                 }
                             }
                         });
@@ -353,7 +353,7 @@ public class accountsPanel {
                         operationsPanel.ItemsOperations.put(deleteItem,income);
                         operationsPanel.OperationsButtons.put(income,operationButton);
                         JOptionPane.showMessageDialog(Swing.frame,"Income has benn successfully added!");
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         dispose();
                     }
                 }
@@ -439,7 +439,7 @@ public class accountsPanel {
                                     accountsPanel.AButtons.get(transfer.getAccountIn()).setText(transfer.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountIn()))+" UAH");
                                     accountsPanel.AButtons.get(transfer.getAccountOut()).setText(transfer.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountOut()))+" UAH");
                                     operationsPanel.TToolbar.revalidate();
-                                    Main.writeUsersInFile(Swing.users);
+                                    Functions.writeUsersInFile(Swing.users);
                                 }
                             }
                         });
@@ -457,7 +457,7 @@ public class accountsPanel {
                         operationsPanel.ItemsOperations.put(deleteItem,transfer);
                         operationsPanel.OperationsButtons.put(transfer,operationButton);
                         JOptionPane.showMessageDialog(Swing.frame,"Transfer has benn completed!");
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         dispose();
                     }
                 }

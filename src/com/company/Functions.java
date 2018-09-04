@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 
-public class Main {
+public class Functions {
 
     public static void writeUsersInFile(List<User> users) {
         FileOutputStream fileOutputStream;

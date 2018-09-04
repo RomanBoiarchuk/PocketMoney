@@ -1,6 +1,5 @@
 package com.company;
 
-import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
 
 import javax.swing.*;
@@ -8,9 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
-import java.util.Set;
 
 public class categoriesPanel {
     static Map<String, JButton> CButtons;
@@ -64,7 +61,7 @@ public class categoriesPanel {
                         for (int i=0;i<1;i++)
                             ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
                         panel.revalidate();
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         JOptionPane.showMessageDialog(Swing.frame,"Category has been successfully deleted!");
                     }
                 }
@@ -103,7 +100,7 @@ public class categoriesPanel {
                         actionPerformed(e);
                     } else {
                         Swing.user.addCategory(name);
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         JButton tempButton = new JButton(name + ": 0.0 UAH");
                         JPopupMenu popupMenu=new JPopupMenu();
                         JMenuItem deleteItem=new JMenuItem("delete");
@@ -131,7 +128,7 @@ public class categoriesPanel {
                                     for (int i=0;i<1;i++)
                                         ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
                                     panel.revalidate();
-                                    Main.writeUsersInFile(Swing.users);
+                                    Functions.writeUsersInFile(Swing.users);
                                     JOptionPane.showMessageDialog(Swing.frame,"Category has been successfully deleted!");
                                 }
                             }
@@ -261,7 +258,7 @@ public class categoriesPanel {
                                     categoriesPanel.categoriesMap.replace(outgoing.getGoal(),categoriesPanel.categoriesMap.get(outgoing.getGoal())-outgoing.getSum());
                                     categoriesPanel.CButtons.get(outgoing.getGoal()).setText(outgoing.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
                                     operationsPanel.OToolbar.revalidate();
-                                    Main.writeUsersInFile(Swing.users);
+                                    Functions.writeUsersInFile(Swing.users);
                                 }
                             }
                         });
@@ -279,7 +276,7 @@ public class categoriesPanel {
                         operationsPanel.ItemsOperations.put(deleteItem,outgoing);
                         operationsPanel.OperationsButtons.put(outgoing,operationButton);
                         JOptionPane.showMessageDialog(Swing.frame, "Outgoing has benn successfully added!");
-                        Main.writeUsersInFile(Swing.users);
+                        Functions.writeUsersInFile(Swing.users);
                         dispose();
                     }
                 }
