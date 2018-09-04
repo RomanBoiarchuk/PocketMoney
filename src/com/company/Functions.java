@@ -2,6 +2,7 @@ package com.company;
 import com.PocketMoney.*;
 import javafx.print.Collation;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public class Functions {
             objectOutputStream.writeObject(users);
             objectOutputStream.close();
         } catch (IOException e) {
-            System.out.println(e);
+            JOptionPane.showMessageDialog(Swing.frame,"Error! Can't create log file in this folder","Error",JOptionPane.ERROR_MESSAGE);
         }
     }
         public static List<User> readUsersFromFile () throws Exception {
