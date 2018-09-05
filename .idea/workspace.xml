@@ -7,29 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af7b434-eb77-49d2-904c-d07a9c2e60f9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddIncome.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel$AddTransfer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PocketMoney/com/company/accountsPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Swing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Swing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/accountsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/accountsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/operationsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/operationsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +34,7 @@
       <file leaf-file-name="Swing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Swing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="85">
               <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -74,20 +52,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="accountsPanel.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="accountsPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/accountsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+            <state relative-caret-position="1166">
+              <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountButton.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccountButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Buttons/AccountButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1394">
-              <caret line="82" column="53" lean-forward="true" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+            <state relative-caret-position="645">
+              <caret line="93" column="5" lean-forward="true" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,7 +76,7 @@
       <file leaf-file-name="operationsPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="17">
               <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
             </state>
           </provider>
@@ -161,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Functions.java" />
         <option value="$PROJECT_DIR$/src/com/company/operationsPanel.java" />
         <option value="$PROJECT_DIR$/src/com/company/accountsPanel.java" />
-        <option value="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" />
         <option value="$PROJECT_DIR$/src/com/company/Swing.java" />
+        <option value="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" />
       </list>
     </option>
   </component>
@@ -186,6 +164,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -229,9 +208,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -383,18 +361,19 @@
       <workItem from="1536044652973" duration="3893000" />
       <workItem from="1536048863549" duration="316000" />
       <workItem from="1536130890200" duration="4515000" />
+      <workItem from="1536136503481" duration="258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="310557000" />
+    <option name="totallyTimeSpent" value="310815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -420,36 +399,37 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.1775" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.1775" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -759,23 +739,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/accountsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Swing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="85">
           <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -785,11 +751,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Buttons/AccountButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" column="53" lean-forward="true" selection-start-line="82" selection-start-column="53" selection-end-line="82" selection-end-column="53" />
+        <state relative-caret-position="645">
+          <caret line="93" column="5" lean-forward="true" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/accountsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1166">
+          <caret line="127" column="9" lean-forward="true" selection-start-line="127" selection-start-column="9" selection-end-line="127" selection-end-column="9" />
         </state>
       </provider>
     </entry>

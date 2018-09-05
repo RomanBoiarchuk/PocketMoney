@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AccountButton extends JButton {
-    public AccountButton(String text){
+    public AccountButton(String text, String account){
         super(text);
         setEnabled(false);
         Dimension dimension=new Dimension(250,50);
@@ -86,5 +86,10 @@ public class AccountButton extends JButton {
                 }
             }
         });
+        accountsPanel.ItemsAccounts.put(addIncomeItem,account);
+        accountsPanel.ItemsAccounts.put(transferItem,account);
+        accountsPanel.ItemsAccounts.put(deleteItem,account);
+        accountsPanel.AButtons.put(account,this);
+        accountsPanel.AToolbar.add(this);
     }
 }
