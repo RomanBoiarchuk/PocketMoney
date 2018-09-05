@@ -1,5 +1,6 @@
 package com.company;
 
+import com.Buttons.AccountButton;
 import com.PocketMoney.Income;
 import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
@@ -35,94 +36,11 @@ public class accountsPanel {
 
         JButton tempButton;
         JPanel tempPanel;
-        JPopupMenu popupMenu;
-        JMenuItem addIncomeItem;
-        JMenuItem transferItem;
-        JMenuItem deleteItem;
         for (String account:accounts){
-            tempButton=new JButton(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH");
-            tempButton.setEnabled(false);
+            tempButton=new AccountButton(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH",account);
             tempPanel=new JPanel();
             tempPanel.add(tempButton);
             tempPanel.setBackground(Color.ORANGE);
-            tempButton.setPreferredSize(dimension);
-            popupMenu=new JPopupMenu();
-            addIncomeItem=new JMenuItem("Income");
-            transferItem=new JMenuItem("Transfer");
-            deleteItem=new JMenuItem("Delete");
-            popupMenu.add(addIncomeItem);
-            popupMenu.add(transferItem);
-            popupMenu.add(deleteItem);
-            tempButton.setComponentPopupMenu(popupMenu);
-            addIncomeItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    AddIncome addIncome=new AddIncome(ItemsAccounts.get(e.getSource()));
-                    addIncome.setVisible(true);
-                }
-            });
-            transferItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    AddTransfer addTransfer=new AddTransfer(ItemsAccounts.get(e.getSource()));
-                    addTransfer.setVisible(true);
-                }
-            });
-            deleteItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this account?",
-                            "Delete account",JOptionPane.YES_NO_OPTION);
-                    if (option==0){
-                        Income income;
-                        String line;
-                        for (int i=0;i<Swing.user.getIncomesSize();i++){
-                            income=Swing.user.getIncome(i);
-                            if (income.getAccount().equals(ItemsAccounts.get(e.getSource()))) {
-                                income.setUnknownAccount();
-                                line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+income.getAccount()+"\": "+String.valueOf(income.getSum())+" UAH";
-                                operationsPanel.IButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                            }
-                        }
-                        Outgoing outgoing;
-                        for (int i=0;i<Swing.user.getOutgoingsSize();i++){
-                            outgoing=Swing.user.getOutgoing(i);
-                            if (outgoing.getAccount().equals(ItemsAccounts.get(e.getSource()))){
-                                outgoing.setUnknownAccount();
-                                line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.valueOf(outgoing.getSum())+" UAH";
-                                operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                            }
-                        }
-                        Transfer transfer;
-                        for (int i=0;i<Swing.user.getTransfersSize();i++){
-                            transfer=Swing.user.getTransfer(i);
-                            if (transfer.getAccountIn().equals(ItemsAccounts.get(e.getSource())) || transfer.getAccountOut().equals(ItemsAccounts.get(e.getSource()))){
-                                if (transfer.getAccountIn().equals(ItemsAccounts.get(e.getSource())))
-                                    transfer.setUnknownAccountIn();
-                                else
-                                    transfer.setUnknownAccountOut();
-                                line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.valueOf(transfer.getSum())+" UAH";
-                                operationsPanel.TButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                            }
-                        }
-                        AToolbar.remove(AButtons.get(ItemsAccounts.get(e.getSource())).getParent());
-                        AToolbar.revalidate();
-                        JButton button=AButtons.get(ItemsAccounts.get(e.getSource()));
-                        AButtons.remove(ItemsAccounts.get(e.getSource()));
-                        Swing.user.deleteAccount(ItemsAccounts.get(e.getSource()));
-                        for (int i=0;i<3;i++)
-                        ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
-                        balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
-                        panel.revalidate();
-                        Functions.writeUsersInFile(Swing.users);
-                        JOptionPane.showMessageDialog(Swing.frame,"Account has been successfully deleted!");
-                    }
-                }
-            });
-            ItemsAccounts.put(addIncomeItem,account);
-            ItemsAccounts.put(transferItem,account);
-            ItemsAccounts.put(deleteItem,account);
-
             AButtons.put(account,tempButton);
             AToolbar.add(tempPanel);
         }

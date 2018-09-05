@@ -89,7 +89,5 @@ public class AccountButton extends JButton {
         accountsPanel.ItemsAccounts.put(addIncomeItem,account);
         accountsPanel.ItemsAccounts.put(transferItem,account);
         accountsPanel.ItemsAccounts.put(deleteItem,account);
-        accountsPanel.AButtons.put(account,this);
-        accountsPanel.AToolbar.add(this);
     }
 }
