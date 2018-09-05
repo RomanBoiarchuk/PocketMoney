@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Swing {
-    static List<User> users;
+    public static List<User> users;
     static JButton unableButton; // to switch from one panel to another and set current panel button unable
-    static User user; //current user
-    static JFrame frame;
+    public static User user; //current user
+    public static JFrame frame;
     // panels, frame
     static JPanel accountsPanel;
     static JPanel categoriesPanel;

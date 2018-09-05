@@ -14,13 +14,14 @@ import java.util.Set;
 
 
 public class accountsPanel {
-    static JLabel balanceLabel;
-    static Map<String,JButton> AButtons;
-    static Map<JMenuItem,String> ItemsAccounts;
-    static JToolBar AToolbar;
+    public static JLabel balanceLabel;
+    public static Map<String,JButton> AButtons; // User's account: button
+    public static Map<JMenuItem,String> ItemsAccounts;
+    public static JToolBar AToolbar; // toolbar with account's buttons
+    public static JPanel panel=new JPanel();
     static JButton addAccountButton;
     static JPanel getPanel(){
-        JPanel panel=new JPanel();
+        // decorating panel
         panel.setBackground(Color.ORANGE);
         panel.setLayout(new GridBagLayout());
         JLabel accountsLabel=new JLabel("Accounts");
@@ -31,6 +32,7 @@ public class accountsPanel {
         AToolbar=new JToolBar(null,JToolBar.VERTICAL);
         AToolbar.setFloatable(false);
         Dimension dimension=new Dimension(250,50);
+
         JButton tempButton;
         JPanel tempPanel;
         JPopupMenu popupMenu;
@@ -256,7 +258,7 @@ public class accountsPanel {
         AToolbar.setBackground(Color.ORANGE);
         return panel;
     }
-    static class AddIncome extends JDialog{
+    public static class AddIncome extends JDialog{
         public AddIncome(String account){
             super(Swing.frame,"Income",true);
             setLayout(new GridBagLayout());
@@ -360,7 +362,7 @@ public class accountsPanel {
             });
         }
     }
-    static class AddTransfer extends JDialog{
+    public static class AddTransfer extends JDialog{
         public AddTransfer(String accountOut){
             super(Swing.frame,"AddTransfer",true);
             setLayout(new GridBagLayout());

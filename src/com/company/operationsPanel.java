@@ -13,12 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class operationsPanel {
-    static Map<Integer,JButton> OButtons;
+    public static Map<Integer,JButton> OButtons;
     static JToolBar OToolbar;
     static JToolBar IToolbar;
     static JToolBar TToolbar;
-    static Map<Integer,JButton> IButtons;
-    static Map<Integer,JButton> TButtons;
+    public static Map<Integer,JButton> IButtons;
+    public static Map<Integer,JButton> TButtons;
     static Map<JMenuItem,Operation> ItemsOperations;
     static Map<Operation,JButton> OperationsButtons;
     static JPanel getPanel(){
