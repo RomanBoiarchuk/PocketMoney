@@ -34,6 +34,7 @@ public class accountsPanel {
         AToolbar.setFloatable(false);
         Dimension dimension=new Dimension(250,50);
 
+        // creating toolbar with buttons that contain information about each account
         JButton tempButton;
         JPanel tempPanel;
         for (String account:accounts){
@@ -64,89 +65,12 @@ public class accountsPanel {
                     else {
                         Swing.user.addAccount(name);
                         Functions.writeUsersInFile(Swing.users);
-                        JButton tempButton = new JButton(name + ": 0.00 UAH");
-                        tempButton.setEnabled(false);
+                        JButton tempButton = new AccountButton(name + ": 0.00 UAH", name);
                         JPanel tempPanel = new JPanel();
                         tempPanel.add(tempButton);
                         tempPanel.setBackground(Color.ORANGE);
-                        tempButton.setPreferredSize(dimension);
-                        JPopupMenu popupMenu=new JPopupMenu();
-                        JMenuItem addIncomeItem=new JMenuItem("Income");
-                        JMenuItem transferItem=new JMenuItem("Transfer");
-                        JMenuItem deleteItem=new JMenuItem("Delete");
-                        popupMenu.add(addIncomeItem);
-                        popupMenu.add(transferItem);
-                        popupMenu.add(deleteItem);
-                        tempButton.setComponentPopupMenu(popupMenu);
-                        addIncomeItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                AddIncome addIncome=new AddIncome(ItemsAccounts.get(e.getSource()));
-                                addIncome.setVisible(true);
-                            }
-                        });
-                        transferItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                AddTransfer addTransfer=new AddTransfer(ItemsAccounts.get(e.getSource()));
-                                addTransfer.setVisible(true);
-                            }
-                        });
-                        deleteItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this account?",
-                                        "Delete account",JOptionPane.YES_NO_OPTION);
-                                if (option==0){
-                                    Income income;
-                                    String line;
-                                    for (int i=0;i<Swing.user.getIncomesSize();i++){
-                                        income=Swing.user.getIncome(i);
-                                        if (income.getAccount().equals(ItemsAccounts.get(e.getSource()))) {
-                                            income.setUnknownAccount();
-                                            line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+income.getAccount()+"\": "+String.format("%.2f",income.getSum())+" UAH";
-                                            operationsPanel.IButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                        }
-                                    }
-                                    Outgoing outgoing;
-                                    for (int i=0;i<Swing.user.getOutgoingsSize();i++){
-                                        outgoing=Swing.user.getOutgoing(i);
-                                        if (outgoing.getAccount().equals(ItemsAccounts.get(e.getSource()))){
-                                            outgoing.setUnknownAccount();
-                                            line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.valueOf(outgoing.getSum())+" UAH";
-                                            operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                        }
-                                    }
-                                    Transfer transfer;
-                                    for (int i=0;i<Swing.user.getTransfersSize();i++){
-                                        transfer=Swing.user.getTransfer(i);
-                                        if (transfer.getAccountIn().equals(ItemsAccounts.get(e.getSource())) || transfer.getAccountOut().equals(ItemsAccounts.get(e.getSource()))){
-                                            if (transfer.getAccountIn().equals(ItemsAccounts.get(e.getSource())))
-                                                transfer.setUnknownAccountIn();
-                                            else
-                                                transfer.setUnknownAccountOut();
-                                            line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.valueOf(transfer.getSum())+" UAH";
-                                            operationsPanel.TButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                        }
-                                    }
-                                    AToolbar.remove(AButtons.get(ItemsAccounts.get(e.getSource())).getParent());
-                                    AToolbar.revalidate();
-                                    JButton button=AButtons.get(ItemsAccounts.get(e.getSource()));
-                                    AButtons.remove(ItemsAccounts.get(e.getSource()));
-                                    Swing.user.deleteAccount(ItemsAccounts.get(e.getSource()));
-                                    for (int i=0;i<3;i++)
-                                        ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
-                                    balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
-                                    panel.revalidate();
-                                    Functions.writeUsersInFile(Swing.users);
-                                    JOptionPane.showMessageDialog(Swing.frame,"Account has been successfully deleted!");
-                                }
-                            }
-                        });
-                        ItemsAccounts.put(addIncomeItem,name);
-                        ItemsAccounts.put(transferItem,name);
-                        ItemsAccounts.put(deleteItem,name);
                         AButtons.put(name, tempButton);
+                        // remove addAccount button from toolbar and return it back after adding new account's button
                         JPanel addAccountPanel = (JPanel) AToolbar.getComponentAtIndex(AToolbar.getComponentCount() - 1);
                         AToolbar.remove(addAccountPanel);
                         AToolbar.add(tempPanel);
@@ -160,17 +84,20 @@ public class accountsPanel {
         tempPanel.add(addAccountButton);
         tempPanel.setBackground(Color.ORANGE);
         AToolbar.add(tempPanel);
+
+        // upper part of panel
         tempPanel=new JPanel();
         tempPanel.setLayout(new BorderLayout());
         tempPanel.add(accountsLabel,BorderLayout.WEST);
         tempPanel.add(balanceLabel,BorderLayout.EAST);
         tempPanel.setPreferredSize(new Dimension(250,50));
         tempPanel.setBackground(Color.ORANGE);
+
+        // toolbar config
         panel.add(tempPanel);
         JScrollPane scrollPane=new JScrollPane();
         scrollPane.setViewportView(AToolbar);
         scrollPane.setMinimumSize(new Dimension(300,350));
-        //scrollPane.setPreferredSize(scrollPane.getMinimumSize());
         panel.add(scrollPane,new GridBagConstraints(0,1,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.VERTICAL,
                 new Insets(30,0,0,0),0,0));
         AToolbar.setBackground(Color.ORANGE);
