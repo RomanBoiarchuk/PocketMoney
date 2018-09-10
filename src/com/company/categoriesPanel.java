@@ -1,5 +1,6 @@
 package com.company;
 
+import com.Buttons.CategoryButton;
 import com.PocketMoney.Outgoing;
 
 import javax.swing.*;
@@ -10,79 +11,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class categoriesPanel {
-    static Map<String, JButton> CButtons;
-    static Map<JButton, String> BCategories;
-    static JToolBar CToolbar;
+    public static Map<String, JButton> CButtons; // category: button
+    static Map<JButton, String> BCategories; // button: category
+    public static JToolBar CToolbar; // toolbar with category buttons
     static JButton addCategoryButton;
-    static Map<JMenuItem,String> ItemsCategories;
-    static Map<String, Double> categoriesMap;
+    public static Map<JMenuItem,String> ItemsCategories;
+    static Map<String, Double> categoriesMap; // category: sum of outgoings
+    public static JPanel panel;
 
     static JPanel getPanel() {
-        JPanel panel = new JPanel();
-        categoriesMap = Swing.user.getOutgoingsCategories();
+        //decorating panel
+        panel = new JPanel();
         panel.setBackground(Color.ORANGE);
         panel.setLayout(new GridBagLayout());
         JLabel categoriesLabel = new JLabel("Categories");
+        Dimension dimension = new Dimension(250, 50);
+        // initializing static variables
+        categoriesMap = Swing.user.getOutgoingsCategories();
         CButtons = new HashMap<>();
         BCategories = new HashMap<>();
         CToolbar = new JToolBar(null, JToolBar.VERTICAL);
         CToolbar.setFloatable(false);
         ItemsCategories=new HashMap<>();
-        Dimension dimension = new Dimension(250, 50);
+        // creating toolbar with buttons that contain information about categories
         JButton tempButton;
         JPanel tempPanel;
-        JPopupMenu popupMenu;
-        JMenuItem deleteItem;
         for (String category : categoriesMap.keySet()) {
-            tempButton = new JButton(category + ": " + String.format("%.2f",categoriesMap.get(category)) + " UAH");
-            popupMenu=new JPopupMenu();
-            deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this category?",
-                            "Delete category",JOptionPane.YES_NO_OPTION);
-                    if (option==0){
-                        Outgoing outgoing;
-                        String line;
-                        for (int i=0;i<Swing.user.getOutgoingsSize();i++){
-                            outgoing=Swing.user.getOutgoing(i);
-                            if (outgoing.getGoal().equals(ItemsCategories.get(e.getSource()))){
-                                outgoing.setUnknownCategory();
-                                line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
-                                operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                            }
-                        }
-                        CToolbar.remove(CButtons.get(ItemsCategories.get(e.getSource())).getParent());
-                        CToolbar.revalidate();
-                        JButton button=CButtons.get(ItemsCategories.get(e.getSource()));
-                        CButtons.remove(ItemsCategories.get(e.getSource()));
-                        Swing.user.deleteCategory(ItemsCategories.get(e.getSource()));
-                        for (int i=0;i<1;i++)
-                            ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
-                        panel.revalidate();
-                        Functions.writeUsersInFile(Swing.users);
-                        JOptionPane.showMessageDialog(Swing.frame,"Category has been successfully deleted!");
-                    }
-                }
-            });
-            popupMenu.add(deleteItem);
-            tempButton.setComponentPopupMenu(popupMenu);
+            tempButton = new CategoryButton(category + ": " + String.format("%.2f",categoriesMap.get(category)) + " UAH", category);
             tempPanel = new JPanel();
             tempPanel.add(tempButton);
             tempPanel.setBackground(Color.ORANGE);
-            tempButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    AddOutgoing addOutgoing = new AddOutgoing((JButton) e.getSource());
-                    addOutgoing.setVisible(true);
-                }
-            });
-            tempButton.setPreferredSize(dimension);
             CButtons.put(category, tempButton);
             BCategories.put(tempButton, category);
             CToolbar.add(tempPanel);
-            ItemsCategories.put(deleteItem,category);
         }
 
         addCategoryButton = new JButton("Add new category");
@@ -152,6 +113,7 @@ public class categoriesPanel {
                         CToolbar.add(tempPanel);
                         CToolbar.add(addCategoryPanel);
                         ItemsCategories.put(deleteItem,name);
+                        categoriesMap.put(name,0d);
                         panel.revalidate();
                     }
                 }
@@ -178,7 +140,7 @@ public class categoriesPanel {
         return panel;
     }
 
-    static class AddOutgoing extends JDialog {
+    public static class AddOutgoing extends JDialog {
         public AddOutgoing(JButton button) {
             super(Swing.frame, "Outgoing", true);
             setLayout(new GridBagLayout());
