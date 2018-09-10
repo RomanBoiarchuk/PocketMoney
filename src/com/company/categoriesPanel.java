@@ -45,7 +45,6 @@ public class categoriesPanel {
             BCategories.put(tempButton, category);
             CToolbar.add(tempPanel);
         }
-
         addCategoryButton = new JButton("Add new category");
         addCategoryButton.setPreferredSize(dimension);
         addCategoryButton.addActionListener(new ActionListener() {
@@ -62,76 +61,39 @@ public class categoriesPanel {
                     } else {
                         Swing.user.addCategory(name);
                         Functions.writeUsersInFile(Swing.users);
-                        JButton tempButton = new JButton(name + ": 0.0 UAH");
-                        JPopupMenu popupMenu=new JPopupMenu();
-                        JMenuItem deleteItem=new JMenuItem("delete");
-                        deleteItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this category?",
-                                        "Delete category",JOptionPane.YES_NO_OPTION);
-                                if (option==0){
-                                    Outgoing outgoing;
-                                    String line;
-                                    for (int i=0;i<Swing.user.getOutgoingsSize();i++){
-                                        outgoing=Swing.user.getOutgoing(i);
-                                        if (outgoing.getGoal().equals(ItemsCategories.get(e.getSource()))){
-                                            outgoing.setUnknownCategory();
-                                            line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
-                                            operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                        }
-                                    }
-                                    CToolbar.remove(CButtons.get(ItemsCategories.get(e.getSource())).getParent());
-                                    CToolbar.revalidate();
-                                    JButton button=CButtons.get(ItemsCategories.get(e.getSource()));
-                                    CButtons.remove(ItemsCategories.get(e.getSource()));
-                                    Swing.user.deleteCategory(ItemsCategories.get(e.getSource()));
-                                    for (int i=0;i<1;i++)
-                                        ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
-                                    panel.revalidate();
-                                    Functions.writeUsersInFile(Swing.users);
-                                    JOptionPane.showMessageDialog(Swing.frame,"Category has been successfully deleted!");
-                                }
-                            }
-                        });
-                        popupMenu.add(deleteItem);
-                        tempButton.setComponentPopupMenu(popupMenu);
+                        JButton tempButton = new CategoryButton(name + ": 0.0 UAH", name);
                         JPanel tempPanel = new JPanel();
                         tempPanel.add(tempButton);
                         tempPanel.setBackground(Color.ORANGE);
-                        tempButton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                AddOutgoing addOutgoing = new AddOutgoing((JButton) e.getSource());
-                                addOutgoing.setVisible(true);
-                            }
-                        });
-                        tempButton.setPreferredSize(dimension);
                         CButtons.put(name, tempButton);
                         BCategories.put(tempButton, name);
+                        categoriesMap.put(name,0d);
+                        // remove addAccount button from toolbar and return it back after adding new account's button
                         JPanel addCategoryPanel = (JPanel) CToolbar.getComponentAtIndex(CToolbar.getComponentCount() - 1);
                         CToolbar.add(tempPanel);
                         CToolbar.add(addCategoryPanel);
-                        ItemsCategories.put(deleteItem,name);
-                        categoriesMap.put(name,0d);
                         panel.revalidate();
                     }
                 }
             }
         });
+        // add addCategoryButton to panel
         tempPanel = new JPanel();
         tempPanel.add(addCategoryButton);
         tempPanel.setBackground(Color.ORANGE);
         CToolbar.add(tempPanel);
+
+        // add "Categories" label to panel
         tempPanel = new JPanel();
         tempPanel.setLayout(new BorderLayout());
         tempPanel.add(categoriesLabel, BorderLayout.WEST);
         tempPanel.setPreferredSize(new Dimension(250, 50));
         tempPanel.setBackground(Color.ORANGE);
         panel.add(tempPanel);
+
+        // add scrollPane to toolbar
         JScrollPane scrollPane=new JScrollPane();
         scrollPane.setMinimumSize(new Dimension(300,350));
-        //scrollPane.setPreferredSize(scrollPane.getMinimumSize());
         scrollPane.setViewportView(CToolbar);
         panel.add(scrollPane, new GridBagConstraints(0, 1, 2, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.VERTICAL,
                 new Insets(30, 0, 0, 0), 0, 0));

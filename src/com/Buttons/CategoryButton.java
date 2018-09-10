@@ -8,8 +8,7 @@ import com.company.operationsPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class CategoryButton extends JButton {
     public CategoryButton(String text,String category){
