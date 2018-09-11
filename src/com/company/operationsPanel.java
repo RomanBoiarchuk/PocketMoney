@@ -13,15 +13,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class operationsPanel {
-    public static Map<Integer,JButton> OButtons;
-    static JToolBar OToolbar;
-    static JToolBar IToolbar;
-    static JToolBar TToolbar;
-    public static Map<Integer,JButton> IButtons;
-    public static Map<Integer,JButton> TButtons;
+    static JToolBar OToolbar; // Outgoings toolbar
+    static JToolBar IToolbar; // Incomes toolbar
+    static JToolBar TToolbar; // Transfers toolbar
+    public static Map<Integer,JButton> OButtons; // Outgoing index: button
+    public static Map<Integer,JButton> IButtons; // Income index: button
+    public static Map<Integer,JButton> TButtons; // Transfer index: button
     static Map<JMenuItem,Operation> ItemsOperations;
     static Map<Operation,JButton> OperationsButtons;
     static JPanel getPanel(){
+
         JPanel panel=new JPanel();
         panel.setBackground(Color.ORANGE);
         panel.setLayout(new GridBagLayout());
@@ -36,13 +37,13 @@ public class operationsPanel {
         OToolbar.setFloatable(false);
         OperationsButtons=new HashMap<>();
         ItemsOperations=new HashMap<>();
+
         JButton tempButton;
         Income income;
         Outgoing outgoing;
         Transfer transfer;
         String line;
         JPopupMenu popupMenu;
-        JMenuItem editItem;
         JMenuItem deleteItem;
         for (int i=0;i<Swing.user.getIncomesSize();i++) {
             income=Swing.user.getIncome(i);
@@ -64,7 +65,7 @@ public class operationsPanel {
                     Income income1 =(Income)ItemsOperations.get(e.getSource());
                     Swing.user.deleteIncome(IToolbar.getComponentIndex(OperationsButtons.get(income1)));
                     IToolbar.remove(OperationsButtons.get(income1));
-                    IButtons.remove(income1);
+                    IButtons.remove(IToolbar.getComponentIndex(OperationsButtons.get(income1)));
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                     accountsPanel.AButtons.get(income1.getAccount()).setText(income1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income1.getAccount()))+" UAH");
                     IToolbar.revalidate();
@@ -107,7 +108,7 @@ public class operationsPanel {
                     Transfer transfer1 =(Transfer) ItemsOperations.get(e.getSource());
                     Swing.user.deleteTransfer(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
                     TToolbar.remove(OperationsButtons.get(transfer1));
-                    TButtons.remove(transfer1);
+                    TButtons.remove(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                     accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
                     accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
@@ -151,7 +152,7 @@ public class operationsPanel {
                     Outgoing outgoing1 =(Outgoing) ItemsOperations.get(e.getSource());
                     Swing.user.deleteOutgoing(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
                     OToolbar.remove(OperationsButtons.get(outgoing1));
-                    OButtons.remove(outgoing1);
+                    OButtons.remove(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                     accountsPanel.AButtons.get(outgoing1.getAccount()).setText(outgoing1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(outgoing1.getAccount()))+" UAH");
                     categoriesPanel.categoriesMap.replace(outgoing1.getGoal(),categoriesPanel.categoriesMap.get(outgoing1.getGoal())- outgoing1.getSum());
