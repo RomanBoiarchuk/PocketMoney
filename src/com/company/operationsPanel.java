@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class operationsPanel {
-    static JToolBar OToolbar; // Outgoings toolbar
-    static JToolBar IToolbar; // Incomes toolbar
-    static JToolBar TToolbar; // Transfers toolbar
+    public static JToolBar OToolbar; // Outgoings toolbar
+    public static JToolBar IToolbar; // Incomes toolbar
+    public static JToolBar TToolbar; // Transfers toolbar
     public static Map<Integer,JButton> OButtons; // Outgoing index: button
     public static Map<Integer,JButton> IButtons; // Income index: button
     public static Map<Integer,JButton> TButtons; // Transfer index: button
-    static Map<JMenuItem,Operation> ItemsOperations;
-    static Map<Operation,JButton> OperationsButtons;
+    public static Map<JMenuItem,Operation> ItemsOperations;
+    public static Map<Operation,JButton> OperationsButtons;
     static JPanel getPanel(){
 
         JPanel panel=new JPanel();
@@ -110,8 +110,10 @@ public class operationsPanel {
                     TToolbar.remove(OperationsButtons.get(transfer1));
                     TButtons.remove(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                    accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
-                    accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
+                    accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "
+                            +String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
+                    accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()
+                            +": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
                     TToolbar.revalidate();
                     Functions.writeUsersInFile(Swing.users);
                 }
@@ -154,9 +156,11 @@ public class operationsPanel {
                     OToolbar.remove(OperationsButtons.get(outgoing1));
                     OButtons.remove(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
                     accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                    accountsPanel.AButtons.get(outgoing1.getAccount()).setText(outgoing1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(outgoing1.getAccount()))+" UAH");
+                    accountsPanel.AButtons.get(outgoing1.getAccount()).setText(outgoing1.getAccount()+": "
+                            +String.format("%.2f", Swing.user.getAccountBalance(outgoing1.getAccount()))+" UAH");
                     categoriesPanel.categoriesMap.replace(outgoing1.getGoal(),categoriesPanel.categoriesMap.get(outgoing1.getGoal())- outgoing1.getSum());
-                    categoriesPanel.CButtons.get(outgoing1.getGoal()).setText(outgoing1.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing1.getGoal())) + " UAH");
+                    categoriesPanel.CButtons.get(outgoing1.getGoal()).setText(outgoing1.getGoal() + ": "
+                            + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing1.getGoal())) + " UAH");
                     OToolbar.revalidate();
                     Swing.frame.revalidate();
                     Functions.writeUsersInFile(Swing.users);
@@ -184,7 +188,7 @@ public class operationsPanel {
         return panel;
     }
 
-    static class OperationsDetails extends JDialog{
+    public static class OperationsDetails extends JDialog{
         public OperationsDetails(Operation operation){
             super(Swing.frame,"Operation",true);
             setLayout(new GridBagLayout());

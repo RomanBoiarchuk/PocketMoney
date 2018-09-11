@@ -16,7 +16,7 @@ public class categoriesPanel {
     public static JToolBar CToolbar; // toolbar with category buttons
     static JButton addCategoryButton;
     public static Map<JMenuItem,String> ItemsCategories;
-    static Map<String, Double> categoriesMap; // category: sum of outgoings
+    public static Map<String, Double> categoriesMap; // category: sum of outgoings
     public static JPanel panel;
 
     static JPanel getPanel() {
