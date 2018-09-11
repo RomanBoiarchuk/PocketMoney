@@ -1,5 +1,6 @@
 package com.company;
 
+import com.Buttons.OperationButton;
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
@@ -43,45 +44,15 @@ public class operationsPanel {
         Outgoing outgoing;
         Transfer transfer;
         String line;
-        JPopupMenu popupMenu;
-        JMenuItem deleteItem;
+        // toolbar with information about incomes
         for (int i=0;i<Swing.user.getIncomesSize();i++) {
             income=Swing.user.getIncome(i);
             line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+income.getAccount()+"\": "+String.format("%.2f",income.getSum())+" UAH";
-            tempButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-            tempButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getIncome(IToolbar.getComponentIndex((JButton)e.getSource())));
-                    operationsDetails.setVisible(true);
-                }
-            });
-            popupMenu=new JPopupMenu();
-            deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(e -> {
-                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                        "Delete operation",JOptionPane.YES_NO_OPTION);
-                if (option==0){
-                    Income income1 =(Income)ItemsOperations.get(e.getSource());
-                    Swing.user.deleteIncome(IToolbar.getComponentIndex(OperationsButtons.get(income1)));
-                    IToolbar.remove(OperationsButtons.get(income1));
-                    IButtons.remove(IToolbar.getComponentIndex(OperationsButtons.get(income1)));
-                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                    accountsPanel.AButtons.get(income1.getAccount()).setText(income1.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income1.getAccount()))+" UAH");
-                    IToolbar.revalidate();
-                    Functions.writeUsersInFile(Swing.users);
-                }
-            });
-            popupMenu.add(deleteItem);
-            tempButton.setComponentPopupMenu(popupMenu);
-            if (income.getAccount().equals("Unknown")){
-                deleteItem.setEnabled(false);
-            }
-            ItemsOperations.put(deleteItem,income);
-            OperationsButtons.put(income,tempButton);
+            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
             IToolbar.add(tempButton);
             IButtons.put(i,tempButton);
         }
+        // decorating and adding income toolbar to the panel
         IToolbar.setBackground(Color.ORANGE);
         panel.add(new JLabel("Incomes"),new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),0,0));
@@ -91,43 +62,15 @@ public class operationsPanel {
         IToolbar.setLayout(new GridLayout());
         panel.add(IncomePane,new GridBagConstraints(0,3,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL,
                 new Insets(10,0,0,0),0,0));
+        // toolbar with information about transfers
         for (int i=0;i<Swing.user.getTransfersSize();i++) {
             transfer=Swing.user.getTransfer(i);
-                line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
-            tempButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-            tempButton.addActionListener(e -> {
-                OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getTransfer(TToolbar.getComponentIndex((JButton)e.getSource())));
-                operationsDetails.setVisible(true);
-            });
-            popupMenu=new JPopupMenu();
-            deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(e -> {
-                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                        "Delete operation",JOptionPane.YES_NO_OPTION);
-                if (option==0){
-                    Transfer transfer1 =(Transfer) ItemsOperations.get(e.getSource());
-                    Swing.user.deleteTransfer(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
-                    TToolbar.remove(OperationsButtons.get(transfer1));
-                    TButtons.remove(TToolbar.getComponentIndex(OperationsButtons.get(transfer1)));
-                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                    accountsPanel.AButtons.get(transfer1.getAccountIn()).setText(transfer1.getAccountIn()+": "
-                            +String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountIn()))+" UAH");
-                    accountsPanel.AButtons.get(transfer1.getAccountOut()).setText(transfer1.getAccountOut()
-                            +": "+String.format("%.2f", Swing.user.getAccountBalance(transfer1.getAccountOut()))+" UAH");
-                    TToolbar.revalidate();
-                    Functions.writeUsersInFile(Swing.users);
-                }
-            });
-            popupMenu.add(deleteItem);
-            tempButton.setComponentPopupMenu(popupMenu);
-            if (transfer.getAccountIn().equals("Unknown") || transfer.getAccountOut().equals("Unknown")){
-                deleteItem.setEnabled(false);
-            }
-            ItemsOperations.put(deleteItem,transfer);
-            OperationsButtons.put(transfer,tempButton);
+            line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
+            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",transfer);
             TToolbar.add(tempButton);
             TButtons.put(i,tempButton);
         }
+        // decorating and adding transfers toolbar to the panel
         TToolbar.setBackground(Color.ORANGE);
         panel.add(new JLabel("Transfers"),new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),0,0));
@@ -136,46 +79,16 @@ public class operationsPanel {
         TransferPane.setPreferredSize(new Dimension(100,100));
         TToolbar.setLayout(new GridLayout());
         panel.add(TransferPane,new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL,
-                new Insets(10,0,0,0),0,0));;
+                new Insets(10,0,0,0),0,0));
+        // toolbar with information about outgoings
         for (int i=0;i<Swing.user.getOutgoingsSize();i++) {
             outgoing=Swing.user.getOutgoing(i);
-                line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
-            tempButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-            tempButton.addActionListener(e -> {
-                OperationsDetails operationsDetails=new OperationsDetails(Swing.user.getOutgoing(OToolbar.getComponentIndex((JButton)e.getSource())));
-                operationsDetails.setVisible(true);
-            });
-            popupMenu=new JPopupMenu();
-            deleteItem=new JMenuItem("delete");
-            deleteItem.addActionListener(e -> {
-                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                        "Delete operation",JOptionPane.YES_NO_OPTION);
-                if (option==0){
-                    Outgoing outgoing1 =(Outgoing) ItemsOperations.get(e.getSource());
-                    Swing.user.deleteOutgoing(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
-                    OToolbar.remove(OperationsButtons.get(outgoing1));
-                    OButtons.remove(OToolbar.getComponentIndex(OperationsButtons.get(outgoing1)));
-                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                    accountsPanel.AButtons.get(outgoing1.getAccount()).setText(outgoing1.getAccount()+": "
-                            +String.format("%.2f", Swing.user.getAccountBalance(outgoing1.getAccount()))+" UAH");
-                    categoriesPanel.categoriesMap.replace(outgoing1.getGoal(),categoriesPanel.categoriesMap.get(outgoing1.getGoal())- outgoing1.getSum());
-                    categoriesPanel.CButtons.get(outgoing1.getGoal()).setText(outgoing1.getGoal() + ": "
-                            + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing1.getGoal())) + " UAH");
-                    OToolbar.revalidate();
-                    Swing.frame.revalidate();
-                    Functions.writeUsersInFile(Swing.users);
-                }
-            });
-            popupMenu.add(deleteItem);
-            tempButton.setComponentPopupMenu(popupMenu);
-            if (outgoing.getAccount().equals("Unknown") || outgoing.getGoal().equals("Unknown")){
-                deleteItem.setEnabled(false);
-            }
-            ItemsOperations.put(deleteItem,outgoing);
-            OperationsButtons.put(outgoing,tempButton);
+            line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
+            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
             OToolbar.add(tempButton);
             OButtons.put(i,tempButton);
         }
+        // decorating and adding outgoings toolbar to the panel
         OToolbar.setBackground(Color.ORANGE);
         panel.add(new JLabel("Outgoings"),new GridBagConstraints(0,4,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),0,0));
