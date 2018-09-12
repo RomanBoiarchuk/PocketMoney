@@ -1,6 +1,7 @@
 package com.company;
 
 import com.Buttons.AccountButton;
+import com.Buttons.OperationButton;
 import com.PocketMoney.Income;
 import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
@@ -106,6 +107,13 @@ public class accountsPanel {
     public static class AddIncome extends JDialog{
         public AddIncome(String account){
             super(Swing.frame,"Income",true);
+            // decorating dialog window
+            setBackground(Color.orange);
+            Toolkit toolkit=Toolkit.getDefaultToolkit();
+            Dimension dimension=toolkit.getScreenSize();
+            int height=300;
+            int width=500;
+            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
             setLayout(new GridBagLayout());
             add(new JLabel("Source "),new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(0,0,0,0),0,0));
@@ -129,80 +137,37 @@ public class accountsPanel {
                     new Insets(40,0,0,0),0,0));
             add(cancel,new GridBagConstraints(1,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(40,20,0,0),0,0));
-            setBackground(Color.orange);
-            Toolkit toolkit=Toolkit.getDefaultToolkit();
-            Dimension dimension=toolkit.getScreenSize();
-            int height=300;
-            int width=500;
-            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-            cancel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
+            cancel.addActionListener(e -> dispose());
+            confirm.addActionListener(e -> {
+                String source=sourceField.getText();
+                double sum=0;
+                boolean isError=false;
+                try{
+                    sum=Double.valueOf(sumField.getText().replaceAll(",","."));
                 }
-            });
-            confirm.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String source=sourceField.getText();
-                    double sum=0;
-                    boolean isError=false;
-                    try{
-                        sum=Double.valueOf(sumField.getText().replaceAll(",","."));
+                catch (Exception ex){
+                    JOptionPane.showMessageDialog(Swing.frame,"Incorrect input in sum field!","Error",JOptionPane.ERROR_MESSAGE);
+                    isError=true;
+                }
+                if (!isError) {
+                    if (source.trim().equals("")){
+                        source="Unknown";
                     }
-                    catch (Exception ex){
-                        JOptionPane.showMessageDialog(Swing.frame,"Incorrect input in sum field!","Error",JOptionPane.ERROR_MESSAGE);
-                        isError=true;
-                    }
-                    if (!isError) {
-                        if (source.trim().equals("")){
-                            source="Unknown";
-                        }
-                        if (comment.getText() == null || comment.getText().equals("Comment"))
-                            Swing.user.addIncome(source,account,sum);
-                        else
-                            Swing.user.addIncome(source,account, sum,comment.getText());
-                        accountsPanel.AButtons.get(account).setText(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH");
-                        accountsPanel.balanceLabel.setText(String.format("%.2f", Swing.user.getBalance()));
-                        Income income=Swing.user.getIncome(Swing.user.getIncomesSize()-1);
-                        String line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+account+"\": "+String.format("%.2f",sum)+" UAH";
-                        JButton operationButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                        JPopupMenu popupMenu=new JPopupMenu();
-                        JMenuItem deleteItem=new JMenuItem("delete");
-                        deleteItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                                        "Delete operation",JOptionPane.YES_NO_OPTION);
-                                if (option==0){
-                                    Income income=(Income)operationsPanel.ItemsOperations.get(e.getSource());
-                                    Swing.user.deleteIncome(operationsPanel.IToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(income)));
-                                    operationsPanel.IToolbar.remove(operationsPanel.OperationsButtons.get(income));
-                                    operationsPanel.IButtons.remove(income);
-                                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                                    accountsPanel.AButtons.get(income.getAccount()).setText(income.getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(income.getAccount()))+" UAH");
-                                    operationsPanel.IToolbar.revalidate();
-                                    Functions.writeUsersInFile(Swing.users);
-                                }
-                            }
-                        });
-                        popupMenu.add(deleteItem);
-                        operationButton.setComponentPopupMenu(popupMenu);
-                        operationButton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                operationsPanel.OperationsDetails operationsDetails=new operationsPanel.OperationsDetails(Swing.user.getIncome(operationsPanel.IToolbar.getComponentIndex((JButton)e.getSource())));
-                                operationsDetails.setVisible(true);
-                            }
-                        });
-                        operationsPanel.IButtons.put(operationsPanel.IToolbar.getComponentCount(),operationButton);
-                        operationsPanel.IToolbar.add(operationButton);
-                        operationsPanel.ItemsOperations.put(deleteItem,income);
-                        operationsPanel.OperationsButtons.put(income,operationButton);
-                        JOptionPane.showMessageDialog(Swing.frame,"Income has benn successfully added!");
-                        Functions.writeUsersInFile(Swing.users);
-                        dispose();
-                    }
+                    if (comment.getText() == null || comment.getText().equals("Comment"))
+                        Swing.user.addIncome(source,account,sum);
+                    else
+                        Swing.user.addIncome(source,account, sum,comment.getText());
+                    // editing data in panels and adding operation button
+                    accountsPanel.AButtons.get(account).setText(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH");
+                    accountsPanel.balanceLabel.setText(String.format("%.2f", Swing.user.getBalance()));
+                    Income income=Swing.user.getIncome(Swing.user.getIncomesSize()-1);
+                    String line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+account+"\": "+String.format("%.2f",sum)+" UAH";
+                    JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
+                    operationsPanel.IButtons.put(operationsPanel.IToolbar.getComponentCount(),operationButton);
+                    operationsPanel.IToolbar.add(operationButton);
+                    JOptionPane.showMessageDialog(Swing.frame,"Income has benn successfully added!");
+                    Functions.writeUsersInFile(Swing.users);
+                    dispose();
                 }
             });
         }
