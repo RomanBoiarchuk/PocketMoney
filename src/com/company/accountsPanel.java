@@ -1,15 +1,17 @@
 package com.company;
 
-import com.Buttons.AccountButton;
-import com.Buttons.OperationButton;
+import com.Components.AccountButton;
+import com.Components.CommentArea;
+import com.Components.OperationButton;
 import com.PocketMoney.Income;
-import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -126,8 +128,7 @@ public class accountsPanel {
             JTextField sumField=new JTextField(20);
             add(sumField,new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(20,20,0,0),0,0));
-            JTextArea comment=new JTextArea("Comment",3,5);
-            comment.setLineWrap(true);
+            JTextArea comment=new CommentArea("Comment",3,5);
             JScrollPane commentPane=new JScrollPane(comment);
             add(commentPane,new GridBagConstraints(0,2,6,3,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(20,0,0,0),100,80));
@@ -198,8 +199,7 @@ public class accountsPanel {
             JTextField sumField=new JTextField(20);
             add(sumField,new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(20,20,0,0),0,0));
-            JTextArea comment=new JTextArea("Comment",3,5);
-            comment.setLineWrap(true);
+            JTextArea comment=new CommentArea("Comment",3,5);
             JScrollPane commentPane=new JScrollPane(comment);
             add(commentPane,new GridBagConstraints(0,2,6,3,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(20,0,0,0),100,80));

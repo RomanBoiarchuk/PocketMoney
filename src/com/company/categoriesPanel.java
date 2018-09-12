@@ -1,6 +1,6 @@
 package com.company;
 
-import com.Buttons.CategoryButton;
+import com.Components.CategoryButton;
 import com.PocketMoney.Outgoing;
 
 import javax.swing.*;
