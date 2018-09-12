@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5af7b434-eb77-49d2-904c-d07a9c2e60f9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/accountsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/accountsPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -35,7 +34,7 @@
       <file leaf-file-name="Swing.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/Swing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="85">
               <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -56,7 +55,7 @@
       <file leaf-file-name="AccountButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Buttons/AccountButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="51">
               <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -80,7 +79,7 @@
       <file leaf-file-name="OperationButton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/Buttons/OperationButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
+            <state relative-caret-position="102">
               <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
             </state>
           </provider>
@@ -89,8 +88,8 @@
       <file leaf-file-name="accountsPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/accountsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="169" column="30" lean-forward="true" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+            <state relative-caret-position="-373">
+              <caret line="183" column="90" selection-start-line="183" selection-start-column="90" selection-end-line="183" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -98,7 +97,7 @@
       <file leaf-file-name="categoriesPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/categoriesPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="170">
               <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
             </state>
           </provider>
@@ -188,7 +187,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -232,6 +230,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
@@ -392,11 +391,12 @@
       <workItem from="1536644488756" duration="6068000" />
       <workItem from="1536652500977" duration="885000" />
       <workItem from="1536736140485" duration="1786000" />
+      <workItem from="1536738281960" duration="712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="327341000" />
+    <option name="totallyTimeSpent" value="328053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -432,17 +432,17 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.1775" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -452,13 +452,13 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.1775" />
+      <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,14 +745,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Buttons/OperationButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
+        <state relative-caret-position="102">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/categoriesPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="170">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
         </state>
       </provider>
@@ -773,7 +773,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Buttons/AccountButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="51">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -790,7 +790,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/Swing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="85">
           <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -800,8 +800,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/accountsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="169" column="30" lean-forward="true" selection-start-line="169" selection-start-column="30" selection-end-line="169" selection-end-column="30" />
+        <state relative-caret-position="-373">
+          <caret line="183" column="90" selection-start-line="183" selection-start-column="90" selection-end-line="183" selection-end-column="90" />
         </state>
       </provider>
     </entry>

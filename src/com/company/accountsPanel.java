@@ -175,10 +175,18 @@ public class accountsPanel {
     public static class AddTransfer extends JDialog{
         public AddTransfer(String accountOut){
             super(Swing.frame,"AddTransfer",true);
+            // decorating dialog window
+            setBackground(Color.orange);
+            Toolkit toolkit=Toolkit.getDefaultToolkit();
+            Dimension dimension=toolkit.getScreenSize();
+            int height=300;
+            int width=500;
+            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
             setLayout(new GridBagLayout());
             add(new JLabel("Income Account "),new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(0,0,0,0),0,0));
             JComboBox<String> accountInBox=new JComboBox<>();
+            // adding all possible choices to checkbox
             for (String key:Swing.user.getAccountsKeys()){
                 if (!key.equals(accountOut))
                 accountInBox.addItem(key);
@@ -201,80 +209,37 @@ public class accountsPanel {
                     new Insets(40,0,0,0),0,0));
             add(cancel,new GridBagConstraints(1,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(40,20,0,0),0,0));
-            setBackground(Color.orange);
-            Toolkit toolkit=Toolkit.getDefaultToolkit();
-            Dimension dimension=toolkit.getScreenSize();
-            int height=300;
-            int width=500;
-            cancel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
+
+            cancel.addActionListener(e -> dispose());
+            confirm.addActionListener(e -> {
+                String accountIn=accountInBox.getItemAt(accountInBox.getSelectedIndex());
+                double sum=0;
+                boolean isError=false;
+                try{
+                    sum=Double.valueOf(sumField.getText().replaceAll(",","."));
+                }
+                catch (Exception ex){
+                    JOptionPane.showMessageDialog(Swing.frame,"Incorrect input in sum field!","Error",JOptionPane.ERROR_MESSAGE);
+                    isError=true;
+                }
+                if (!isError) {
+                    if (comment.getText() == null || comment.getText().equals("Comment"))
+                        Swing.user.transfer(accountOut,accountIn,sum);
+                    else
+                        Swing.user.transfer(accountOut,accountIn,sum,comment.getText());
+                    // editing data in the panels and adding operation button
+                    accountsPanel.AButtons.get(accountIn).setText(accountIn+": "+String.format("%.2f",Swing.user.getAccountBalance(accountIn))+" UAH");
+                    accountsPanel.AButtons.get(accountOut).setText(accountOut+": "+String.format("%.2f",Swing.user.getAccountBalance(accountOut))+" UAH");
+                    Transfer transfer =Swing.user.getTransfer(Swing.user.getTransfersSize()-1);
+                    String line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
+                    JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", transfer);
+                    operationsPanel.TButtons.put(operationsPanel.TToolbar.getComponentCount(),operationButton);
+                    operationsPanel.TToolbar.add(operationButton);
+                    JOptionPane.showMessageDialog(Swing.frame,"Transfer has benn completed!");
+                    Functions.writeUsersInFile(Swing.users);
                     dispose();
                 }
             });
-            confirm.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    String accountIn=accountInBox.getItemAt(accountInBox.getSelectedIndex());
-                    double sum=0;
-                    boolean isError=false;
-                    try{
-                        sum=Double.valueOf(sumField.getText().replaceAll(",","."));
-                    }
-                    catch (Exception ex){
-                        JOptionPane.showMessageDialog(Swing.frame,"Incorrect input in sum field!","Error",JOptionPane.ERROR_MESSAGE);
-                        isError=true;
-                    }
-                    if (!isError) {
-                        if (comment.getText() == null || comment.getText().equals("Comment"))
-                            Swing.user.transfer(accountOut,accountIn,sum);
-                        else
-                            Swing.user.transfer(accountOut,accountIn,sum,comment.getText());
-                        accountsPanel.AButtons.get(accountIn).setText(accountIn+": "+String.format("%.2f",Swing.user.getAccountBalance(accountIn))+" UAH");
-                        accountsPanel.AButtons.get(accountOut).setText(accountOut+": "+String.format("%.2f",Swing.user.getAccountBalance(accountOut))+" UAH");
-                        Transfer transfer =Swing.user.getTransfer(Swing.user.getTransfersSize()-1);
-                        String line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
-                        JButton operationButton=new JButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                        JPopupMenu popupMenu=new JPopupMenu();
-                        JMenuItem deleteItem=new JMenuItem("delete");
-                        deleteItem.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                int option=JOptionPane.showConfirmDialog(Swing.frame,"Are you sure you want to delete this operation?",
-                                        "Delete operation",JOptionPane.YES_NO_OPTION);
-                                if (option==0){
-                                    Transfer transfer=(Transfer) operationsPanel.ItemsOperations.get(e.getSource());
-                                    Swing.user.deleteTransfer(operationsPanel.TToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(transfer)));
-                                    operationsPanel.TToolbar.remove(operationsPanel.OperationsButtons.get(transfer));
-                                    operationsPanel.TButtons.remove(transfer);
-                                    accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                                    accountsPanel.AButtons.get(transfer.getAccountIn()).setText(transfer.getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountIn()))+" UAH");
-                                    accountsPanel.AButtons.get(transfer.getAccountOut()).setText(transfer.getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(transfer.getAccountOut()))+" UAH");
-                                    operationsPanel.TToolbar.revalidate();
-                                    Functions.writeUsersInFile(Swing.users);
-                                }
-                            }
-                        });
-                        popupMenu.add(deleteItem);
-                        operationButton.setComponentPopupMenu(popupMenu);
-                        operationButton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                operationsPanel.OperationsDetails operationsDetails=new operationsPanel.OperationsDetails(Swing.user.getTransfer(operationsPanel.TToolbar.getComponentIndex((JButton)e.getSource())));
-                                operationsDetails.setVisible(true);
-                            }
-                        });
-                        operationsPanel.TButtons.put(operationsPanel.TToolbar.getComponentCount(),operationButton);
-                        operationsPanel.TToolbar.add(operationButton);
-                        operationsPanel.ItemsOperations.put(deleteItem,transfer);
-                        operationsPanel.OperationsButtons.put(transfer,operationButton);
-                        JOptionPane.showMessageDialog(Swing.frame,"Transfer has benn completed!");
-                        Functions.writeUsersInFile(Swing.users);
-                        dispose();
-                    }
-                }
-            });
-            setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
         }
     }
 }
