@@ -615,7 +615,7 @@ public class operationsPanel {
                                             }
                                             else
                                             {
-                                                Swing.user.setOutgoingSum(TToolbar.getComponentIndex(OperationsButtons.get(operation)),newSum);
+                                                Swing.user.setTransferSum(TToolbar.getComponentIndex(OperationsButtons.get(operation)),newSum);
                                                 accountsPanel.AButtons.get(((Transfer)operation).getAccountIn()).setText(((Transfer)operation).getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountIn()))+" UAH");
                                                 accountsPanel.AButtons.get(((Transfer)operation).getAccountOut()).setText(((Transfer)operation).getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountOut()))+" UAH");
                                                 sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");

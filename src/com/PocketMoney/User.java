@@ -27,15 +27,6 @@ public class User implements Serializable{
     public boolean categoryExists(String category){
         return categories.contains(category);
     }
-    public Class getOperationClass(int index){
-        return operations.get(index).getClass();
-    }
-    public double getOperationSum(int index){
-        return operations.get(index).sum;
-    }
-    public Operation getOperation(int index){
-        return operations.get(index);
-    }
     public Income getIncome(int index){
         return incomes.get(index);
     }
@@ -44,9 +35,6 @@ public class User implements Serializable{
     }
     public Transfer getTransfer(int index){
         return transfers.get(index);
-    }
-    public int getAccountsSize(){
-        return accounts.size();
     }
     public Set<String> getAccountsKeys(){
         return accounts.keySet();
@@ -93,68 +81,32 @@ public class User implements Serializable{
          Transfer temp=new Transfer(accountOut,accountIn,sum);
         transfers.add(temp);
         operations.add(temp);
-        accounts.replace(accountOut,(Double)accounts.get(accountOut)-sum);
-        accounts.replace(accountIn,(Double)accounts.get(accountIn)+sum);
+        accounts.replace(accountOut,accounts.get(accountOut)-sum);
+        accounts.replace(accountIn, accounts.get(accountIn)+sum);
     }
     public void transfer(String accountOut,String accountIn,double sum, String comment){
          Transfer temp=new Transfer(accountOut,accountIn,sum,comment);
         transfers.add(temp);
         operations.add(temp);
-        accounts.replace(accountOut,(Double)accounts.get(accountOut)-sum);
-        accounts.replace(accountIn,(Double)accounts.get(accountIn)+sum);
+        accounts.replace(accountOut,accounts.get(accountOut)-sum);
+        accounts.replace(accountIn,accounts.get(accountIn)+sum);
     }
     public void addIncome(String source, String account, double sum){
          Income temp=new Income(source,account,sum);
          incomes.add(temp);
          operations.add(temp);
          balance+=sum;
-         accounts.replace(account,(Double)accounts.get(account)+sum);
+         accounts.replace(account,accounts.get(account)+sum);
     }
     public void addIncome(String source, String account, double sum, String comment){
          Income temp=new Income(source,account,sum,comment);
         incomes.add(temp);
         operations.add(temp);
         balance+=sum;
-        accounts.replace(account,(Double)accounts.get(account)+sum);
+        accounts.replace(account,accounts.get(account)+sum);
     }
     public void addAccount(String name){
          accounts.put(name,0d);
-    }
-    public void printAccounts(){
-        System.out.println("Total balance: "+balance);
-        System.out.println("Accounts:");
-         for ( Object acc:accounts.keySet()){
-             System.out.print(acc+": ");
-             System.out.println(accounts.get(acc));
-         }
-    }
-    public void printIncomes(){
-        for (int i=0;i<incomes.size();i++){
-            System.out.print(i+1+") ");
-            incomes.get(i).print();
-        }
-        if (incomes.size()==0) System.out.println("There are no incomes yet!");
-    }
-    public void printOutgoings() {
-        for (int i = 0; i < outgoings.size(); i++) {
-            System.out.print(i + 1 + ") ");
-            ((Outgoing) outgoings.get(i)).print();
-        }
-        if (outgoings.size()==0) System.out.println("There are no outgoings yet!");
-    }
-    public void printTransfers(){
-        for (int i = 0; i < transfers.size(); i++) {
-            System.out.print(i + 1 + ") ");
-            ((Transfer) transfers.get(i)).print();
-        }
-        if (transfers.size()==0) System.out.println("There are no transfers yet!");
-    }
-    public void printOperations(){
-        for (int i = 0; i < operations.size(); i++) {
-            System.out.print(i + 1 + ") ");
-            ((Operation) operations.get(i)).print();
-        }
-        if (operations.size()==0) System.out.println("There are no operations yet!");
     }
 
     public void deleteIncome(int index){
@@ -230,16 +182,13 @@ public class User implements Serializable{
         incomes.get(index).account=account;
     }
     public void setIncomeSum(int index,double sum){
-        String account=((Income)incomes.get(index)).account;
-        Double oldSum=((Income)incomes.get(index)).sum;
+        String account=incomes.get(index).account;
+        Double oldSum=incomes.get(index).sum;
         balance=balance-oldSum+sum;
         accounts.replace(account,(double)accounts.get(account)-oldSum+sum);
         incomes.get(index).sum=sum;
     }
 
-    public void setIncomeComment(int index,String comment){
-        incomes.get(index).comment=comment;
-    }
 
     public void setOutgoingAccount(int index, String account) throws IllegalArgumentException{
         Double sum=outgoings.get(index).sum;
@@ -251,10 +200,6 @@ public class User implements Serializable{
 
     public void setOutgoingGoal(int index, String goal){
         outgoings.get(index).goal=goal;
-    }
-
-    public void setOutgoingComment(int index, String comment){
-        outgoings.get(index).comment=comment;
     }
 
     public void setOutgoingSum(int index, double sum){
@@ -290,22 +235,6 @@ public class User implements Serializable{
         transfers.get(index).sum=sum;
     }
 
-    public void setTransferComment(int index, String comment){
-        transfers.get(index).comment=comment;
-    }
-
-    public void printIncome(int index){
-        incomes.get(index).print();
-    }
-
-    public void printOutgoing(int index){
-        ((Outgoing)outgoings.get(index)).print();
-    }
-
-    public void printTransfer(int index){
-        ((Transfer)transfers.get(index)).print();
-    }
-
     public int getIncomesSize() {
         return incomes.size();
     }
@@ -318,9 +247,6 @@ public class User implements Serializable{
         return transfers.size();
     }
 
-    public int getOperationsSize(){
-        return operations.size();
-    }
 
     public User(String name) {
         this.name = name;

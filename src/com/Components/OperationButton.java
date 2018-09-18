@@ -46,7 +46,7 @@ public class OperationButton extends JButton {
                     }
                 }
                 if (operation.getClass().equals(Transfer.class)) {
-                    Swing.user.deleteIncome(operationsPanel.IToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
+                    Swing.user.deleteTransfer(operationsPanel.IToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     operationsPanel.TToolbar.remove(operationsPanel.OperationsButtons.get(operation));
                     operationsPanel.TButtons.remove(operationsPanel.TToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     accountsPanel.AButtons.get(((Transfer)operation).getAccountIn()).setText(((Transfer)operation).getAccountIn()+": "
