@@ -7,6 +7,7 @@ import com.company.Functions;
 import com.company.Swing;
 import com.company.accountsPanel;
 import com.company.operationsPanel;
+import com.Dialogs.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,11 +28,11 @@ public class AccountButton extends JButton {
         popupMenu.add(deleteItem);
         setComponentPopupMenu(popupMenu);
         addIncomeItem.addActionListener(e -> {
-            accountsPanel.AddIncome addIncome=new accountsPanel.AddIncome(accountsPanel.ItemsAccounts.get(e.getSource()));
+            AddIncome addIncome=new AddIncome(accountsPanel.ItemsAccounts.get(e.getSource()));
             addIncome.setVisible(true);
         });
         transferItem.addActionListener(e -> {
-            accountsPanel.AddTransfer addTransfer=new accountsPanel.AddTransfer(accountsPanel.ItemsAccounts.get(e.getSource()));
+            AddTransfer addTransfer=new AddTransfer(accountsPanel.ItemsAccounts.get(e.getSource()));
             addTransfer.setVisible(true);
         });
         deleteItem.addActionListener(e -> {
