@@ -104,13 +104,14 @@ public class operationsPanel {
     public static class OperationsDetails extends JDialog{
         public OperationsDetails(Operation operation){
             super(Swing.frame,"Operation",true);
+            // decorating dialog window
             setLayout(new GridBagLayout());
             Toolkit toolkit=Toolkit.getDefaultToolkit();
             Dimension dimension=toolkit.getScreenSize();
             int height=450;
             int width=500;
             setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-            boolean unknownComponent=false; // to check if there is unknown field within operation's fields
+            boolean unknownComponent=false; // to check if any operation's field is unknown
             JPanel tempPanel;
             if (operation.getClass().equals(Income.class)){
                 JLabel sourceLabel=new JLabel(((Income)operation).getSource());
@@ -121,56 +122,47 @@ public class operationsPanel {
                 add(tempPanel,new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                         new Insets(30,0,0,0),0,0));
                 JButton editSourceButton=new JButton("edit");
-                editSourceButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JDialog dialog=new JDialog(Swing.frame,"Income",true){
-                            {
-                                Toolkit toolkit=Toolkit.getDefaultToolkit();
-                                Dimension dimension=toolkit.getScreenSize();
-                                int height=200;
-                                int width=300;
-                                setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-                                setLayout(new GridBagLayout());
-                                JTextField sourceField=new JTextField(20);
-                                sourceField.setAutoscrolls(false);
-                                add(new JLabel("Source"),new GridBagConstraints(0,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(0,0,0,0),0,0));
-                                add(sourceField,new GridBagConstraints(0,1,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(20,0,0,0),0,0));
-                                JButton cancelButton=new JButton("Cancel");
-                                cancelButton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
+                editSourceButton.addActionListener(e -> {
+                    JDialog dialog=new JDialog(Swing.frame,"Income",true){
+                        {
+                            // decorating editSource window
+                            Toolkit toolkit1 =Toolkit.getDefaultToolkit();
+                            Dimension dimension1 = toolkit1.getScreenSize();
+                            int height1 =200;
+                            int width1 =300;
+                            setBounds((dimension1.width- width1)/2,(dimension1.height- height1)/2, width1, height1);
+
+                            setLayout(new GridBagLayout());
+                            JTextField sourceField=new JTextField(20);
+                            sourceField.setAutoscrolls(false);
+                            add(new JLabel("Source"),new GridBagConstraints(0,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(0,0,0,0),0,0));
+                            add(sourceField,new GridBagConstraints(0,1,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,0,0,0),0,0));
+                            JButton cancelButton=new JButton("Cancel");
+                            cancelButton.addActionListener(e1 -> dispose());
+                            JButton confirmButton=new JButton("Confirm");
+                            confirmButton.addActionListener(e->{
+                                    if (sourceField.getText().trim().equals("")){
+                                        JOptionPane.showMessageDialog(Swing.frame,"Incorrect input!","Error",JOptionPane.ERROR_MESSAGE);
+                                    }
+                                    else {
+                                        Swing.user.setIncomeSource(IToolbar.getComponentIndex(OperationsButtons.get(operation)), sourceField.getText());
+                                        String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",operation.getSum())+" UAH";
+                                        OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                                        sourceLabel.setText(((Income) operation).getSource());
+                                        Functions.writeUsersInFile(Swing.users);
+                                        Swing.operationsPanel.revalidate();
                                         dispose();
                                     }
                                 });
-                                JButton confirmButton=new JButton("Confirm");
-                                confirmButton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        if (sourceField.getText().trim().equals("")){
-                                            JOptionPane.showMessageDialog(Swing.frame,"Incorrect input!","Error",JOptionPane.ERROR_MESSAGE);
-                                        }
-                                        else {
-                                            Swing.user.setIncomeSource(IToolbar.getComponentIndex(OperationsButtons.get(operation)), sourceField.getText());
-                                            String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",operation.getSum())+" UAH";
-                                            OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                            sourceLabel.setText(((Income) operation).getSource());
-                                            Functions.writeUsersInFile(Swing.users);
-                                            Swing.operationsPanel.revalidate();
-                                            dispose();
-                                        }
-                                    }
-                                });
-                                add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(20,0,0,0),0,0));
-                                add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(20,20,0,0),0,0));
-                            }
-                        };
-                        dialog.setVisible(true);
-                    }
+                            add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,0,0,0),0,0));
+                            add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,20,0,0),0,0));
+                        }
+                    };
+                    dialog.setVisible(true);
                 });
                 add(editSourceButton,new GridBagConstraints(2,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                         new Insets(30,15,0,0),0,0));
@@ -182,60 +174,51 @@ public class operationsPanel {
                 add(tempPanel,new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                         new Insets(30,0,0,0),0,0));
                 JButton editAccountButton=new JButton("edit");
-                editAccountButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        JDialog dialog=new JDialog(Swing.frame,"Income",true){
-                            {
-                                Toolkit toolkit=Toolkit.getDefaultToolkit();
-                                Dimension dimension=toolkit.getScreenSize();
-                                int height=200;
-                                int width=300;
-                                setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-                                setLayout(new GridBagLayout());
-                                JComboBox<String> accountBox=new JComboBox<>();
-                                for (String key : Swing.user.getAccountsKeys()) {
-                                    accountBox.addItem(key);
-                                }
-                                accountBox.setSelectedItem(((Income) operation).getAccount());
-                                add(new JLabel("Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                        new Insets(0, 20, 0, 0), 0, 0));
-                                add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                        new Insets(0, 20, 0, 0), 0, 0));
-                                JButton cancelButton=new JButton("Cancel");
-                                cancelButton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        dispose();
-                                    }
-                                });
-                                JButton confirmButton=new JButton("Confirm");
-                                confirmButton.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        if (!accountBox.getSelectedItem().equals(((Income) operation).getAccount())) {
-                                            String oldAccount=((Income) operation).getAccount();
-                                            Swing.user.setIncomeAccount(IToolbar.getComponentIndex(OperationsButtons.get(operation)), (String)accountBox.getSelectedItem());
-                                            String line = operation.getDate() + "\n" + "from \"" + ((Income) operation).getSource() + "\" to \"" + ((Income) operation).getAccount() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
-                                            OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                            accountLabel.setText(((Income) operation).getAccount());
-                                            accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
-                                            accountsPanel.AButtons.get(((Income) operation).getAccount()).setText(((Income) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income) operation).getAccount()))+" UAH");
-                                            Swing.accountsPanel.revalidate();
-                                            Swing.operationsPanel.revalidate();
-                                            Functions.writeUsersInFile(Swing.users);
-                                        }
-                                            dispose();
-                                    }
-                                });
-                                add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(20,0,0,0),0,0));
-                                add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                        new Insets(20,20,0,0),0,0));
+                editAccountButton.addActionListener(e -> {
+                    JDialog dialog=new JDialog(Swing.frame,"Income",true){
+                        {
+                            // decorating editAccount window
+                            Toolkit toolkit12 =Toolkit.getDefaultToolkit();
+                            Dimension dimension12 = toolkit12.getScreenSize();
+                            int height12 =200;
+                            int width12 =300;
+                            setBounds((dimension12.width- width12)/2,(dimension12.height- height12)/2, width12, height12);
+                            setLayout(new GridBagLayout());
+                            JComboBox<String> accountBox=new JComboBox<>();
+                            for (String key : Swing.user.getAccountsKeys()) {
+                                accountBox.addItem(key);
                             }
-                        };
-                        dialog.setVisible(true);
-                    }
+                            accountBox.setSelectedItem(((Income) operation).getAccount());
+                            add(new JLabel("Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                                    new Insets(0, 20, 0, 0), 0, 0));
+                            add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                                    new Insets(0, 20, 0, 0), 0, 0));
+                            JButton cancelButton=new JButton("Cancel");
+                            cancelButton.addActionListener(e12 -> dispose());
+                            JButton confirmButton=new JButton("Confirm");
+                            confirmButton.addActionListener(e->{
+                                    if (!accountBox.getSelectedItem().equals(((Income) operation).getAccount())) {
+                                        String oldAccount=((Income) operation).getAccount();
+                                        Swing.user.setIncomeAccount(IToolbar.getComponentIndex(OperationsButtons.get(operation)), (String)accountBox.getSelectedItem());
+                                        String line = operation.getDate() + "\n" + "from \"" + ((Income) operation).getSource() + "\" to \"" + ((Income) operation).getAccount() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
+                                        OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                                        accountLabel.setText(((Income) operation).getAccount());
+                                        accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
+                                        accountsPanel.AButtons.get(((Income) operation).getAccount()).setText(((Income) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income) operation).getAccount()))+" UAH");
+                                        Swing.accountsPanel.revalidate();
+                                        Swing.operationsPanel.revalidate();
+                                        Functions.writeUsersInFile(Swing.users);
+                                    }
+                                        dispose();
+                                }
+                            );
+                            add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,0,0,0),0,0));
+                            add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                    new Insets(20,20,0,0),0,0));
+                        }
+                    };
+                    dialog.setVisible(true);
                 });
                 add(editAccountButton,new GridBagConstraints(2,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                         new Insets(30,15,0,0),0,0));
@@ -255,61 +238,58 @@ public class operationsPanel {
                     add(tempPanel,new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                             new Insets(30,0,0,0),0,0));
                     JButton editAccountButton=new JButton("edit");
-                    editAccountButton.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JDialog dialog=new JDialog(Swing.frame,"Outgoing",true){
-                                {
-                                    Toolkit toolkit=Toolkit.getDefaultToolkit();
-                                    Dimension dimension=toolkit.getScreenSize();
-                                    int height=200;
-                                    int width=300;
-                                    setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-                                    setLayout(new GridBagLayout());
-                                    JComboBox<String> accountBox=new JComboBox<>();
-                                    for (String key : Swing.user.getAccountsKeys()) {
-                                        accountBox.addItem(key);
-                                    }
-                                    accountBox.setSelectedItem(((Outgoing) operation).getAccount());
-                                    add(new JLabel("Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                            new Insets(0, 20, 0, 0), 0, 0));
-                                    add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                            new Insets(0, 20, 0, 0), 0, 0));
-                                    JButton cancelButton=new JButton("Cancel");
-                                    cancelButton.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            dispose();
-                                        }
-                                    });
-                                    JButton confirmButton=new JButton("Confirm");
-                                    confirmButton.addActionListener(new ActionListener() {
-                                        @Override
-                                        public void actionPerformed(ActionEvent e) {
-                                            if (!accountBox.getSelectedItem().equals(((Outgoing) operation).getAccount())) {
-                                                String oldAccount=((Outgoing) operation).getAccount();
-                                                Swing.user.setOutgoingAccount(OToolbar.getComponentIndex(OperationsButtons.get(operation)), (String)accountBox.getSelectedItem());
-                                                String line = operation.getDate() + "\n" + "from \"" + ((Outgoing) operation).getAccount() + "\" to \"" + ((Outgoing) operation).getGoal() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
-                                                OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                                accountLabel.setText(((Outgoing) operation).getAccount());
-                                                accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
-                                                accountsPanel.AButtons.get(((Outgoing) operation).getAccount()).setText(((Outgoing) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing) operation).getAccount()))+" UAH");
-                                                Functions.writeUsersInFile(Swing.users);
-                                                Swing.accountsPanel.revalidate();
-                                                Swing.categoriesPanel.revalidate();
-                                                Swing.operationsPanel.revalidate();
-                                            }
-                                            dispose();
-                                        }
-                                    });
-                                    add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                            new Insets(20,0,0,0),0,0));
-                                    add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                            new Insets(20,20,0,0),0,0));
+                    editAccountButton.addActionListener(e -> {
+                        JDialog dialog=new JDialog(Swing.frame,"Outgoing",true){
+                            {
+                                Toolkit toolkit13 =Toolkit.getDefaultToolkit();
+                                Dimension dimension13 = toolkit13.getScreenSize();
+                                int height13 =200;
+                                int width13 =300;
+                                setBounds((dimension13.width- width13)/2,(dimension13.height- height13)/2, width13, height13);
+                                setLayout(new GridBagLayout());
+                                JComboBox<String> accountBox=new JComboBox<>();
+                                for (String key : Swing.user.getAccountsKeys()) {
+                                    accountBox.addItem(key);
                                 }
-                            };
-                            dialog.setVisible(true);
-                        }
+                                accountBox.setSelectedItem(((Outgoing) operation).getAccount());
+                                add(new JLabel("Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                                        new Insets(0, 20, 0, 0), 0, 0));
+                                add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                                        new Insets(0, 20, 0, 0), 0, 0));
+                                JButton cancelButton=new JButton("Cancel");
+                                cancelButton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+                                JButton confirmButton=new JButton("Confirm");
+                                confirmButton.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        if (!accountBox.getSelectedItem().equals(((Outgoing) operation).getAccount())) {
+                                            String oldAccount=((Outgoing) operation).getAccount();
+                                            Swing.user.setOutgoingAccount(OToolbar.getComponentIndex(OperationsButtons.get(operation)), (String)accountBox.getSelectedItem());
+                                            String line = operation.getDate() + "\n" + "from \"" + ((Outgoing) operation).getAccount() + "\" to \"" + ((Outgoing) operation).getGoal() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
+                                            OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                                            accountLabel.setText(((Outgoing) operation).getAccount());
+                                            accountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
+                                            accountsPanel.AButtons.get(((Outgoing) operation).getAccount()).setText(((Outgoing) operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing) operation).getAccount()))+" UAH");
+                                            Functions.writeUsersInFile(Swing.users);
+                                            Swing.accountsPanel.revalidate();
+                                            Swing.categoriesPanel.revalidate();
+                                            Swing.operationsPanel.revalidate();
+                                        }
+                                        dispose();
+                                    }
+                                });
+                                add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                        new Insets(20,0,0,0),0,0));
+                                add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
+                                        new Insets(20,20,0,0),0,0));
+                            }
+                        };
+                        dialog.setVisible(true);
                     });
                     add(editAccountButton,new GridBagConstraints(2,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                             new Insets(30,15,0,0),0,0));
