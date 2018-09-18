@@ -1,5 +1,6 @@
 package com.Components;
 
+import com.Dialogs.AddOutgoing;
 import com.PocketMoney.Outgoing;
 import com.company.Functions;
 import com.company.Swing;
@@ -46,7 +47,7 @@ public class CategoryButton extends JButton {
         popupMenu.add(deleteItem);
         setComponentPopupMenu(popupMenu);
         addActionListener(e-> {
-                categoriesPanel.AddOutgoing addOutgoing = new categoriesPanel.AddOutgoing((JButton) e.getSource());
+                AddOutgoing addOutgoing = new AddOutgoing((JButton) e.getSource());
                 addOutgoing.setVisible(true);
         });
         categoriesPanel.ItemsCategories.put(deleteItem,category);

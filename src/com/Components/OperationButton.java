@@ -32,7 +32,7 @@ public class OperationButton extends JButton {
                     }
                 }
                 if (operation.getClass().equals(Outgoing.class)) {
-                    Swing.user.deleteOutgoing(operationsPanel.IToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
+                    Swing.user.deleteOutgoing(operationsPanel.OToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     operationsPanel.OToolbar.remove(operationsPanel.OperationsButtons.get(operation));
                     operationsPanel.OButtons.remove(operationsPanel.OToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     accountsPanel.AButtons.get(((Outgoing)operation).getAccount()).setText(((Outgoing)operation).getAccount()+": "
@@ -46,7 +46,7 @@ public class OperationButton extends JButton {
                     }
                 }
                 if (operation.getClass().equals(Transfer.class)) {
-                    Swing.user.deleteTransfer(operationsPanel.IToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
+                    Swing.user.deleteTransfer(operationsPanel.TToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     operationsPanel.TToolbar.remove(operationsPanel.OperationsButtons.get(operation));
                     operationsPanel.TButtons.remove(operationsPanel.TToolbar.getComponentIndex(operationsPanel.OperationsButtons.get(operation)));
                     accountsPanel.AButtons.get(((Transfer)operation).getAccountIn()).setText(((Transfer)operation).getAccountIn()+": "
