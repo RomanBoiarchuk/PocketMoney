@@ -25,7 +25,7 @@
       <file leaf-file-name="Operation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/PocketMoney/Operation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="476">
               <caret line="33" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="e#715#716#0" expanded="true" />
@@ -37,14 +37,8 @@
       <file leaf-file-name="operationsPanel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="240" column="62" lean-forward="true" selection-start-line="240" selection-start-column="62" selection-end-line="240" selection-end-column="62" />
-              <folding>
-                <element signature="e#17045#17046#0" expanded="true" />
-                <element signature="e#17134#17135#0" expanded="true" />
-                <element signature="e#59203#59204#0" expanded="true" />
-                <element signature="e#59252#59253#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1272">
+              <caret line="704" column="51" selection-start-line="704" selection-start-column="51" selection-end-line="704" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -90,7 +84,6 @@
         <option value="$PROJECT_DIR$/src/com/Buttons/AccountButton.java" />
         <option value="$PROJECT_DIR$/src/com/Buttons/CommentArea.java" />
         <option value="$PROJECT_DIR$/src/com/Components/CommentArea.java" />
-        <option value="$PROJECT_DIR$/src/com/Dialogs/AddIncome.java" />
         <option value="$PROJECT_DIR$/src/com/company/accountsPanel.java" />
         <option value="$PROJECT_DIR$/src/com/Dialogs/AddTransfer.java" />
         <option value="$PROJECT_DIR$/src/com/Components/AccountButton.java" />
@@ -99,6 +92,7 @@
         <option value="$PROJECT_DIR$/src/com/company/categoriesPanel.java" />
         <option value="$PROJECT_DIR$/src/com/Dialogs/AddOutgoing.java" />
         <option value="$PROJECT_DIR$/src/com/Components/CategoryButton.java" />
+        <option value="$PROJECT_DIR$/src/com/Dialogs/AddIncome.java" />
         <option value="$PROJECT_DIR$/src/com/company/operationsPanel.java" />
       </list>
     </option>
@@ -123,7 +117,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
@@ -176,6 +169,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -344,11 +338,12 @@
       <workItem from="1537257293095" duration="1465000" />
       <workItem from="1537260998615" duration="2548000" />
       <workItem from="1537264095779" duration="1146000" />
+      <workItem from="1537340442644" duration="3770000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336671000" />
+    <option name="totallyTimeSpent" value="340441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -384,17 +379,17 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4980289" visible="true" weight="0.1775" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" x="0" y="370" width="1604" height="120" id="Run" order="2" type="WINDOWED" weight="0.40488842" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -404,10 +399,10 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3285151" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3285151" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info id="Favorites" order="5" sideWeight="0.50197107" side_tool="true" weight="0.23375" />
@@ -683,7 +678,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/PocketMoney/Operation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="476">
           <caret line="33" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="e#715#716#0" expanded="true" />
@@ -691,20 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/Dialogs/AddIncome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="65" column="69" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/Dialogs/AddOutgoing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
           <caret line="57" column="98" selection-start-line="57" selection-start-column="98" selection-end-line="57" selection-end-column="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -712,9 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,16 +738,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/Dialogs/AddIncome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/operationsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="240" column="62" lean-forward="true" selection-start-line="240" selection-start-column="62" selection-end-line="240" selection-end-column="62" />
-          <folding>
-            <element signature="e#17045#17046#0" expanded="true" />
-            <element signature="e#17134#17135#0" expanded="true" />
-            <element signature="e#59203#59204#0" expanded="true" />
-            <element signature="e#59252#59253#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1272">
+          <caret line="704" column="51" selection-start-line="704" selection-start-column="51" selection-end-line="704" selection-end-column="51" />
         </state>
       </provider>
     </entry>
