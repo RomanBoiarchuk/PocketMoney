@@ -25,6 +25,7 @@ public class accountsPanel {
     public static JPanel panel=new JPanel();
     static JButton addAccountButton;
     static JPanel getPanel(){
+        JPanel panel=new JPanel();
         // decorating panel
         panel.setBackground(Color.ORANGE);
         panel.setLayout(new GridBagLayout());
