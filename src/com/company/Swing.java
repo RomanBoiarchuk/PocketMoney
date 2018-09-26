@@ -16,9 +16,9 @@ public class Swing {
     public static User user; //current user
     public static JFrame frame;
     // panels, frame
-    static JPanel accountsPanel;
-    static JPanel categoriesPanel;
-    static JPanel operationsPanel;
+    public static JPanel accountsPanel;
+    public static JPanel categoriesPanel;
+    public static JPanel operationsPanel;
     static JLabel nameLabel=new JLabel(); // current user name
     static JPanel mainPanel;
     static JButton categoriesButton; // default start panel button

@@ -1,5 +1,6 @@
 package com.Components;
 
+import com.Dialogs.OperationDetails.OperationDetails;
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
@@ -11,8 +12,8 @@ public class OperationButton extends JButton {
     public OperationButton(String text, Operation operation){
         super(text);
         addActionListener(e -> {
-            OperationsPanel.OperationsDetails operationsDetails=new OperationsPanel.OperationsDetails(operation);
-            operationsDetails.setVisible(true);
+            OperationDetails operationDetails =new OperationDetails(operation);
+            operationDetails.setVisible(true);
         });
         JPopupMenu popupMenu=new JPopupMenu();
         JMenuItem deleteItem=new JMenuItem("delete");
