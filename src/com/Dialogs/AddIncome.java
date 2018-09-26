@@ -3,10 +3,10 @@ package com.Dialogs;
 import com.Components.CommentArea;
 import com.Components.OperationButton;
 import com.PocketMoney.Income;
-import com.company.Functions;
+import com.company.UsersChanger;
 import com.company.Swing;
-import com.company.accountsPanel;
-import com.company.operationsPanel;
+import com.company.AccountsPanel;
+import com.company.OperationsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,15 +64,15 @@ public class AddIncome extends JDialog {
                 else
                     Swing.user.addIncome(source,account, sum,comment.getText());
                 // editing data in panels and adding operation button
-                accountsPanel.AButtons.get(account).setText(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH");
-                accountsPanel.balanceLabel.setText(String.format("%.2f", Swing.user.getBalance()));
+                AccountsPanel.AButtons.get(account).setText(account+": "+String.format("%.2f", Swing.user.getAccountBalance(account))+" UAH");
+                AccountsPanel.balanceLabel.setText(String.format("%.2f", Swing.user.getBalance()));
                 Income income=Swing.user.getIncome(Swing.user.getIncomesSize()-1);
                 String line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+account+"\": "+String.format("%.2f",sum)+" UAH";
                 JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
-                operationsPanel.IButtons.put(operationsPanel.IToolbar.getComponentCount(),operationButton);
-                operationsPanel.IToolbar.add(operationButton);
+                OperationsPanel.IButtons.put(OperationsPanel.IToolbar.getComponentCount(),operationButton);
+                OperationsPanel.IToolbar.add(operationButton);
                 JOptionPane.showMessageDialog(Swing.frame,"Income has benn successfully added!");
-                Functions.writeUsersInFile(Swing.users);
+                UsersChanger.writeUsersInFile(Swing.users);
                 dispose();
             }
         });

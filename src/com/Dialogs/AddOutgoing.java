@@ -55,21 +55,21 @@ public class AddOutgoing extends JDialog {
             }
             if (!isError) {
                 if (comment.getText().trim().equals("") || comment.getText().equals("Comment"))
-                    Swing.user.addOutgoing(sum, categoriesPanel.BCategories.get(button), account);
+                    Swing.user.addOutgoing(sum, CategoriesPanel.BCategories.get(button), account);
                 else
-                    Swing.user.addOutgoing(sum, categoriesPanel.BCategories.get(button), account, comment.getText());
+                    Swing.user.addOutgoing(sum, CategoriesPanel.BCategories.get(button), account, comment.getText());
                 Outgoing outgoing = Swing.user.getOutgoing(Swing.user.getOutgoingsSize() - 1);
                 // editing data in panels and adding operation button
-                accountsPanel.AButtons.get(account).setText(account + ": " + String.format("%.2f",Swing.user.getAccountBalance(account)) + " UAH");
-                categoriesPanel.categoriesMap.replace(outgoing.getGoal(),categoriesPanel.categoriesMap.get(outgoing.getGoal())+outgoing.getSum());
-                button.setText(outgoing.getGoal() + ": " + String.format("%.2f",categoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
-                accountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+                AccountsPanel.AButtons.get(account).setText(account + ": " + String.format("%.2f",Swing.user.getAccountBalance(account)) + " UAH");
+                CategoriesPanel.categoriesMap.replace(outgoing.getGoal(),CategoriesPanel.categoriesMap.get(outgoing.getGoal())+outgoing.getSum());
+                button.setText(outgoing.getGoal() + ": " + String.format("%.2f",CategoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
+                AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                 String line = outgoing.getDate() + "\n" + "from \"" + outgoing.getAccount() + "\" to \"" + outgoing.getGoal() + "\": " + String.format("%.2f",outgoing.getSum()) + " UAH";
                 JButton operationButton = new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
-                operationsPanel.OButtons.put(operationsPanel.OToolbar.getComponentCount(), operationButton);
-                operationsPanel.OToolbar.add(operationButton);
+                OperationsPanel.OButtons.put(OperationsPanel.OToolbar.getComponentCount(), operationButton);
+                OperationsPanel.OToolbar.add(operationButton);
                 JOptionPane.showMessageDialog(Swing.frame, "Outgoing has benn successfully added!");
-                Functions.writeUsersInFile(Swing.users);
+                UsersChanger.writeUsersInFile(Swing.users);
                 dispose();
             }
         });

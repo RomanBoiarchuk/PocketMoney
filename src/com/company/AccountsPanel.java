@@ -1,23 +1,17 @@
 package com.company;
 
 import com.Components.AccountButton;
-import com.Components.CommentArea;
-import com.Components.OperationButton;
-import com.PocketMoney.Income;
-import com.PocketMoney.Transfer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 
-public class accountsPanel {
+public class AccountsPanel {
     public static JLabel balanceLabel;
     public static Map<String,JButton> AButtons; // User's account: button
     public static Map<JMenuItem,String> ItemsAccounts;
@@ -68,7 +62,7 @@ public class accountsPanel {
                     }
                     else {
                         Swing.user.addAccount(name);
-                        Functions.writeUsersInFile(Swing.users);
+                        UsersChanger.writeUsersInFile(Swing.users);
                         JButton tempButton = new AccountButton(name + ": 0.00 UAH", name);
                         JPanel tempPanel = new JPanel();
                         tempPanel.add(tempButton);

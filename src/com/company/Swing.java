@@ -26,7 +26,7 @@ public class Swing {
     public static void main(String[] args) {
         // looking for file with users
         try {
-            users = Functions.readUsersFromFile();
+            users = UsersChanger.readUsersFromFile();
         }
         catch (Exception e){
             users=new ArrayList<>();
@@ -44,9 +44,9 @@ public class Swing {
         user=users.get(0);
         frame = Frame.getFrame();
         mainPanel=new JPanel();
-        accountsPanel= com.company.accountsPanel.getPanel();
-        categoriesPanel= com.company.categoriesPanel.getPanel();
-        operationsPanel= com.company.operationsPanel.getPanel();
+        accountsPanel= AccountsPanel.getPanel();
+        categoriesPanel= CategoriesPanel.getPanel();
+        operationsPanel= OperationsPanel.getPanel();
 
         // to switch between few panels at one position
         CardLayout card=new CardLayout();
@@ -148,7 +148,7 @@ public class Swing {
                 return addUser();
             }
             else {
-                Functions.pushForward(users, new User(name));
+                UsersChanger.pushForward(users, new User(name));
                 user = users.get(0);
                 // delete links to previous panels if they are not null
                 try{
@@ -158,9 +158,9 @@ public class Swing {
                 } catch (Exception e){}
 
                 // prepare frame for new user
-                accountsPanel = com.company.accountsPanel.getPanel();
-                categoriesPanel = com.company.categoriesPanel.getPanel();
-                operationsPanel = com.company.operationsPanel.getPanel();
+                accountsPanel = AccountsPanel.getPanel();
+                categoriesPanel = CategoriesPanel.getPanel();
+                operationsPanel = OperationsPanel.getPanel();
                 // add panels to card layout if it's first user
                 try{
                     mainPanel.add(categoriesPanel,"categories");
@@ -175,7 +175,7 @@ public class Swing {
                 }
                 if (frame != null)
                     frame.revalidate();
-                Functions.writeUsersInFile(users);
+                UsersChanger.writeUsersInFile(users);
                 JOptionPane.showMessageDialog(frame, "User has been successfully added!");
                 return true;
             }
@@ -229,7 +229,7 @@ public class Swing {
                             // make changes in the frame
                             String line1 =user1.getName()+"\n"+String.format("%.2f",user1.getBalance())+" UAH";
                             button.setText("<html>" + line1.replaceAll("\\n", "<br>") + "</html>");
-                            Functions.writeUsersInFile(users);
+                            UsersChanger.writeUsersInFile(users);
                         }
                     }
                     else {
@@ -246,7 +246,7 @@ public class Swing {
                         ItemsButtons.remove(e.getSource());
                         ItemsButtons.remove(button.getComponentPopupMenu().getComponent(0));
                         usersBar.remove(button);
-                        Functions.writeUsersInFile(users);
+                        UsersChanger.writeUsersInFile(users);
                         revalidate();
                     }
                 });
@@ -257,18 +257,18 @@ public class Swing {
                     User newUser=users.get(usersBar.getComponentIndex((JButton)e.getSource()));
                     // place new user in the beginning of list (to load him first next time program starts)
                     users.remove(newUser);
-                    Functions.pushForward(users,newUser);
+                    UsersChanger.pushForward(users,newUser);
                     // make all necessary changes to the frame
                     Swing.user=newUser;
                     nameLabel.setText(newUser.getName());
                     mainPanel.remove(accountsPanel);
                     mainPanel.remove(categoriesPanel);
                     mainPanel.remove(operationsPanel);
-                    accountsPanel= com.company.accountsPanel.getPanel();
+                    accountsPanel= AccountsPanel.getPanel();
                     accountsPanel.revalidate();
-                    categoriesPanel= com.company.categoriesPanel.getPanel();
+                    categoriesPanel= CategoriesPanel.getPanel();
                     categoriesPanel.revalidate();
-                    operationsPanel= com.company.operationsPanel.getPanel();
+                    operationsPanel= OperationsPanel.getPanel();
                     operationsPanel.revalidate();
                     mainPanel.add(categoriesPanel,"categories");
                     mainPanel.add(accountsPanel,"accounts");
@@ -277,7 +277,7 @@ public class Swing {
                     unableButton.setEnabled(true);
                     unableButton=categoriesButton;
                     frame.revalidate();
-                    Functions.writeUsersInFile(users);
+                    UsersChanger.writeUsersInFile(users);
                     dispose();
                 });
                 ItemsButtons.put(changeNameItem,tempButton);

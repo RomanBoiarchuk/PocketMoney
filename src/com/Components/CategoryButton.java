@@ -2,10 +2,10 @@ package com.Components;
 
 import com.Dialogs.AddOutgoing;
 import com.PocketMoney.Outgoing;
-import com.company.Functions;
+import com.company.UsersChanger;
 import com.company.Swing;
-import com.company.categoriesPanel;
-import com.company.operationsPanel;
+import com.company.CategoriesPanel;
+import com.company.OperationsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,21 +26,21 @@ public class CategoryButton extends JButton {
                 String line;
                 for (int i=0;i<Swing.user.getOutgoingsSize();i++){
                     outgoing=Swing.user.getOutgoing(i);
-                    if (outgoing.getGoal().equals(categoriesPanel.ItemsCategories.get(e.getSource()))){
+                    if (outgoing.getGoal().equals(CategoriesPanel.ItemsCategories.get(e.getSource()))){
                         outgoing.setUnknownCategory();
                         line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
-                        operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                        OperationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                     }
                 }
-                categoriesPanel.CToolbar.remove(categoriesPanel.CButtons.get(categoriesPanel.ItemsCategories.get(e.getSource())).getParent());
-                categoriesPanel.CToolbar.revalidate();
-                JButton button=categoriesPanel.CButtons.get(categoriesPanel.ItemsCategories.get(e.getSource()));
-                categoriesPanel.CButtons.remove(categoriesPanel.ItemsCategories.get(e.getSource()));
-                Swing.user.deleteCategory(categoriesPanel.ItemsCategories.get(e.getSource()));
+                CategoriesPanel.CToolbar.remove(CategoriesPanel.CButtons.get(CategoriesPanel.ItemsCategories.get(e.getSource())).getParent());
+                CategoriesPanel.CToolbar.revalidate();
+                JButton button=CategoriesPanel.CButtons.get(CategoriesPanel.ItemsCategories.get(e.getSource()));
+                CategoriesPanel.CButtons.remove(CategoriesPanel.ItemsCategories.get(e.getSource()));
+                Swing.user.deleteCategory(CategoriesPanel.ItemsCategories.get(e.getSource()));
                 for (int i=0;i<1;i++)
-                    categoriesPanel.ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
-                categoriesPanel.panel.revalidate();
-                Functions.writeUsersInFile(Swing.users);
+                    CategoriesPanel.ItemsCategories.remove(button.getComponentPopupMenu().getComponent(0));
+                CategoriesPanel.panel.revalidate();
+                UsersChanger.writeUsersInFile(Swing.users);
                 JOptionPane.showMessageDialog(Swing.frame,"Category has been successfully deleted!");
             }
         });
@@ -50,6 +50,6 @@ public class CategoryButton extends JButton {
                 AddOutgoing addOutgoing = new AddOutgoing((JButton) e.getSource());
                 addOutgoing.setVisible(true);
         });
-        categoriesPanel.ItemsCategories.put(deleteItem,category);
+        CategoriesPanel.ItemsCategories.put(deleteItem,category);
     }
 }

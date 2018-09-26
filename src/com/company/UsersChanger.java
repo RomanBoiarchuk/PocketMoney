@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 import java.util.Scanner;
 
-public class Functions {
+public class UsersChanger {
 
     public static void writeUsersInFile(List<User> users) {
         FileOutputStream fileOutputStream;

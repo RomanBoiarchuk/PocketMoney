@@ -1,9 +1,6 @@
 package com.company;
 
 import com.Components.CategoryButton;
-import com.Components.CommentArea;
-import com.Components.OperationButton;
-import com.PocketMoney.Outgoing;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class categoriesPanel {
+public class CategoriesPanel {
     public static Map<String, JButton> CButtons; // category: button
     public static Map<JButton, String> BCategories; // button: category
     public static JToolBar CToolbar; // toolbar with category buttons
@@ -62,7 +59,7 @@ public class categoriesPanel {
                         actionPerformed(e);
                     } else {
                         Swing.user.addCategory(name);
-                        Functions.writeUsersInFile(Swing.users);
+                        UsersChanger.writeUsersInFile(Swing.users);
                         JButton tempButton = new CategoryButton(name + ": 0.0 UAH", name);
                         JPanel tempPanel = new JPanel();
                         tempPanel.add(tempButton);

@@ -3,10 +3,10 @@ package com.Dialogs;
 import com.Components.CommentArea;
 import com.Components.OperationButton;
 import com.PocketMoney.Transfer;
-import com.company.Functions;
+import com.company.UsersChanger;
 import com.company.Swing;
-import com.company.accountsPanel;
-import com.company.operationsPanel;
+import com.company.AccountsPanel;
+import com.company.OperationsPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,15 +66,15 @@ public class AddTransfer extends JDialog {
                 else
                     Swing.user.transfer(accountOut,accountIn,sum,comment.getText());
                 // editing data in the panels and adding operation button
-                accountsPanel.AButtons.get(accountIn).setText(accountIn+": "+String.format("%.2f",Swing.user.getAccountBalance(accountIn))+" UAH");
-                accountsPanel.AButtons.get(accountOut).setText(accountOut+": "+String.format("%.2f",Swing.user.getAccountBalance(accountOut))+" UAH");
+                AccountsPanel.AButtons.get(accountIn).setText(accountIn+": "+String.format("%.2f",Swing.user.getAccountBalance(accountIn))+" UAH");
+                AccountsPanel.AButtons.get(accountOut).setText(accountOut+": "+String.format("%.2f",Swing.user.getAccountBalance(accountOut))+" UAH");
                 Transfer transfer =Swing.user.getTransfer(Swing.user.getTransfersSize()-1);
                 String line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
                 JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", transfer);
-                operationsPanel.TButtons.put(operationsPanel.TToolbar.getComponentCount(),operationButton);
-                operationsPanel.TToolbar.add(operationButton);
+                OperationsPanel.TButtons.put(OperationsPanel.TToolbar.getComponentCount(),operationButton);
+                OperationsPanel.TToolbar.add(operationButton);
                 JOptionPane.showMessageDialog(Swing.frame,"Transfer has benn completed!");
-                Functions.writeUsersInFile(Swing.users);
+                UsersChanger.writeUsersInFile(Swing.users);
                 dispose();
             }
         });

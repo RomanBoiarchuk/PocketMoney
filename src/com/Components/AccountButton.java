@@ -3,10 +3,10 @@ package com.Components;
 import com.PocketMoney.Income;
 import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
-import com.company.Functions;
+import com.company.UsersChanger;
 import com.company.Swing;
-import com.company.accountsPanel;
-import com.company.operationsPanel;
+import com.company.AccountsPanel;
+import com.company.OperationsPanel;
 import com.Dialogs.*;
 
 import javax.swing.*;
@@ -28,11 +28,11 @@ public class AccountButton extends JButton {
         popupMenu.add(deleteItem);
         setComponentPopupMenu(popupMenu);
         addIncomeItem.addActionListener(e -> {
-            AddIncome addIncome=new AddIncome(accountsPanel.ItemsAccounts.get(e.getSource()));
+            AddIncome addIncome=new AddIncome(AccountsPanel.ItemsAccounts.get(e.getSource()));
             addIncome.setVisible(true);
         });
         transferItem.addActionListener(e -> {
-            AddTransfer addTransfer=new AddTransfer(accountsPanel.ItemsAccounts.get(e.getSource()));
+            AddTransfer addTransfer=new AddTransfer(AccountsPanel.ItemsAccounts.get(e.getSource()));
             addTransfer.setVisible(true);
         });
         deleteItem.addActionListener(e -> {
@@ -43,48 +43,48 @@ public class AccountButton extends JButton {
                 String line;
                 for (int i=0;i<Swing.user.getIncomesSize();i++){
                     income=Swing.user.getIncome(i);
-                    if (income.getAccount().equals(accountsPanel.ItemsAccounts.get(e.getSource()))) {
+                    if (income.getAccount().equals(AccountsPanel.ItemsAccounts.get(e.getSource()))) {
                         income.setUnknownAccount();
                         line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+income.getAccount()+"\": "+String.valueOf(income.getSum())+" UAH";
-                        operationsPanel.IButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                        OperationsPanel.IButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                     }
                 }
                 Outgoing outgoing;
                 for (int i=0;i<Swing.user.getOutgoingsSize();i++){
                     outgoing=Swing.user.getOutgoing(i);
-                    if (outgoing.getAccount().equals(accountsPanel.ItemsAccounts.get(e.getSource()))){
+                    if (outgoing.getAccount().equals(AccountsPanel.ItemsAccounts.get(e.getSource()))){
                         outgoing.setUnknownAccount();
                         line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.valueOf(outgoing.getSum())+" UAH";
-                        operationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                        OperationsPanel.OButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                     }
                 }
                 Transfer transfer;
                 for (int i=0;i<Swing.user.getTransfersSize();i++){
                     transfer=Swing.user.getTransfer(i);
-                    if (transfer.getAccountIn().equals(accountsPanel.ItemsAccounts.get(e.getSource())) || transfer.getAccountOut().equals(accountsPanel.ItemsAccounts.get(e.getSource()))){
-                        if (transfer.getAccountIn().equals(accountsPanel.ItemsAccounts.get(e.getSource())))
+                    if (transfer.getAccountIn().equals(AccountsPanel.ItemsAccounts.get(e.getSource())) || transfer.getAccountOut().equals(AccountsPanel.ItemsAccounts.get(e.getSource()))){
+                        if (transfer.getAccountIn().equals(AccountsPanel.ItemsAccounts.get(e.getSource())))
                             transfer.setUnknownAccountIn();
                         else
                             transfer.setUnknownAccountOut();
                         line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.valueOf(transfer.getSum())+" UAH";
-                        operationsPanel.TButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+                        OperationsPanel.TButtons.get(i).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
                     }
                 }
-                accountsPanel.AToolbar.remove(accountsPanel.AButtons.get(accountsPanel.ItemsAccounts.get(e.getSource())).getParent());
-                accountsPanel.AToolbar.revalidate();
-                JButton button=accountsPanel.AButtons.get(accountsPanel.ItemsAccounts.get(e.getSource()));
-                accountsPanel.AButtons.remove(accountsPanel.ItemsAccounts.get(e.getSource()));
-                Swing.user.deleteAccount(accountsPanel.ItemsAccounts.get(e.getSource()));
+                AccountsPanel.AToolbar.remove(AccountsPanel.AButtons.get(AccountsPanel.ItemsAccounts.get(e.getSource())).getParent());
+                AccountsPanel.AToolbar.revalidate();
+                JButton button=AccountsPanel.AButtons.get(AccountsPanel.ItemsAccounts.get(e.getSource()));
+                AccountsPanel.AButtons.remove(AccountsPanel.ItemsAccounts.get(e.getSource()));
+                Swing.user.deleteAccount(AccountsPanel.ItemsAccounts.get(e.getSource()));
                 for (int i=0;i<3;i++)
-                    accountsPanel.ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
-                accountsPanel.balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
-                accountsPanel.panel.revalidate();
-                Functions.writeUsersInFile(Swing.users);
+                    AccountsPanel.ItemsAccounts.remove(button.getComponentPopupMenu().getComponent(0));
+                AccountsPanel.balanceLabel.setText(String.valueOf(Swing.user.getBalance()));
+                AccountsPanel.panel.revalidate();
+                UsersChanger.writeUsersInFile(Swing.users);
                 JOptionPane.showMessageDialog(Swing.frame,"Account has been successfully deleted!");
             }
         });
-        accountsPanel.ItemsAccounts.put(addIncomeItem,account);
-        accountsPanel.ItemsAccounts.put(transferItem,account);
-        accountsPanel.ItemsAccounts.put(deleteItem,account);
+        AccountsPanel.ItemsAccounts.put(addIncomeItem,account);
+        AccountsPanel.ItemsAccounts.put(transferItem,account);
+        AccountsPanel.ItemsAccounts.put(deleteItem,account);
     }
 }
