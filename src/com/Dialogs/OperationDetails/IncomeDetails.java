@@ -23,16 +23,8 @@ public class IncomeDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editSourceButton=new JButton("edit");
         editSourceButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Income",true){
+            JDialog dialog=new FieldChangerWindow("Income"){
                 {
-                    // decorating editSource window
-                    Toolkit toolkit1 =Toolkit.getDefaultToolkit();
-                    Dimension dimension1 = toolkit1.getScreenSize();
-                    int height1 =200;
-                    int width1 =300;
-                    setBounds((dimension1.width- width1)/2,(dimension1.height- height1)/2, width1, height1);
-
-                    setLayout(new GridBagLayout());
                     JTextField sourceField=new JTextField(20);
                     sourceField.setAutoscrolls(false);
                     add(new JLabel("Source"),new GridBagConstraints(0,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
@@ -75,15 +67,8 @@ public class IncomeDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editAccountButton=new JButton("edit");
         editAccountButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Income",true){
+            JDialog dialog=new FieldChangerWindow("Income"){
                 {
-                    // decorating editAccount window
-                    Toolkit toolkit12 =Toolkit.getDefaultToolkit();
-                    Dimension dimension12 = toolkit12.getScreenSize();
-                    int height12 =200;
-                    int width12 =300;
-                    setBounds((dimension12.width- width12)/2,(dimension12.height- height12)/2, width12, height12);
-                    setLayout(new GridBagLayout());
                     JComboBox<String> accountBox=new JComboBox<>();
                     for (String key : Swing.user.getAccountsKeys()) {
                         accountBox.addItem(key);
