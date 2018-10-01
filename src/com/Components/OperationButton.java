@@ -1,6 +1,9 @@
 package com.Components;
 
+import com.Dialogs.OperationDetails.IncomeDetails;
 import com.Dialogs.OperationDetails.OperationDetails;
+import com.Dialogs.OperationDetails.OutgoingDetails;
+import com.Dialogs.OperationDetails.TransferDetails;
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
@@ -12,7 +15,8 @@ public class OperationButton extends JButton {
     public OperationButton(String text, Operation operation){
         super(text);
         addActionListener(e -> {
-            OperationDetails operationDetails =new OperationDetails(operation);
+            OperationDetails operationDetails =(operation.getClass().equals(Income.class))?new IncomeDetails((Income)operation):
+                    (operation.getClass().equals(Outgoing.class))?new OutgoingDetails((Outgoing)operation):new TransferDetails((Transfer)operation);
             operationDetails.setVisible(true);
         });
         JPopupMenu popupMenu=new JPopupMenu();

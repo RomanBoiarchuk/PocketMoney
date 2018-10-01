@@ -11,7 +11,7 @@ import java.awt.*;
 
 import static com.company.OperationsPanel.IToolbar;
 
-public class OperationDetails extends JDialog {
+public abstract class OperationDetails extends JDialog {
     JButton editSumButton;
     public OperationDetails(Operation operation){
         super(Swing.frame,"Operation",true);
@@ -22,135 +22,7 @@ public class OperationDetails extends JDialog {
         int height=450;
         int width=500;
         setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-        boolean unknownComponent=false; // to check if any operation's field is unknown
         JPanel tempPanel;
-        if (operation.getClass().equals(Income.class)){
-
-        }
-        else
-        if (operation.getClass().equals(Outgoing.class)){
-
-        }
-        else
-        {
-            JLabel accountOutLabel=new JLabel(((Transfer)operation).getAccountOut());
-            tempPanel=new JPanel();
-            tempPanel.setLayout(new BorderLayout());
-            tempPanel.add(new JLabel("Outgoing account: "),BorderLayout.WEST);
-            tempPanel.add(accountOutLabel,BorderLayout.EAST);
-            add(tempPanel,new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                    new Insets(30,0,0,0),0,0));
-            JButton editAccountOutButton=new JButton("edit");
-            editAccountOutButton.addActionListener(e -> {
-                JDialog dialog=new JDialog(Swing.frame,"Transfer",true){
-                    {
-                        Toolkit toolkit15 =Toolkit.getDefaultToolkit();
-                        Dimension dimension15 = toolkit15.getScreenSize();
-                        int height15 =200;
-                        int width15 =300;
-                        setBounds((dimension15.width- width15)/2,(dimension15.height- height15)/2, width15, height15);
-                        setLayout(new GridBagLayout());
-                        JComboBox<String> accountBox=new JComboBox<>();
-                        for (String key : Swing.user.getAccountsKeys()) {
-                            accountBox.addItem(key);
-                        }
-                        accountBox.setSelectedItem(((Transfer) operation).getAccountOut());
-                        accountBox.removeItem(((Transfer) operation).getAccountIn());
-                        add(new JLabel("Outgoing Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                new Insets(0, 20, 0, 0), 0, 0));
-                        add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                new Insets(0, 20, 0, 0), 0, 0));
-                        JButton cancelButton=new JButton("Cancel");
-                        cancelButton.addActionListener(e15 -> dispose());
-                        JButton confirmButton=new JButton("Confirm");
-                        confirmButton.addActionListener(e->{
-                            if (!accountBox.getSelectedItem().equals(((Transfer) operation).getAccountOut())) {
-                                String oldAccount=((Transfer) operation).getAccountOut();
-                                String newAccount=(String)accountBox.getSelectedItem();
-                                Swing.user.setTransferOut(OperationsPanel.TToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)), newAccount);
-                                String line = operation.getDate() + "\n" + "from \"" + ((Transfer) operation).getAccountOut() + "\" to \"" + ((Transfer) operation).getAccountIn() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
-                                OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                accountOutLabel.setText(newAccount);
-                                AccountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
-                                AccountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
-                                UsersChanger.writeUsersInFile(Swing.users);
-                                Swing.accountsPanel.revalidate();
-                                Swing.operationsPanel.revalidate();
-                            }
-                            dispose();
-                        });
-                        add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                new Insets(20,0,0,0),0,0));
-                        add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                new Insets(20,20,0,0),0,0));
-                    }
-                };
-                dialog.setVisible(true);
-            });
-            add(editAccountOutButton,new GridBagConstraints(2,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                    new Insets(30,15,0,0),0,0));
-            JLabel accountInLabel=new JLabel(((Transfer)operation).getAccountIn());
-            tempPanel=new JPanel();
-            tempPanel.setLayout(new BorderLayout());
-            tempPanel.add(new JLabel("Income account: "),BorderLayout.WEST);
-            tempPanel.add(accountInLabel,BorderLayout.EAST);
-            add(tempPanel,new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                    new Insets(30,0,0,0),0,0));
-            JButton editAccountInButton=new JButton("edit");
-            editAccountInButton.addActionListener(e -> {
-                JDialog dialog=new JDialog(Swing.frame,"Transfer",true){
-                    {
-                        Toolkit toolkit16 =Toolkit.getDefaultToolkit();
-                        Dimension dimension16 = toolkit16.getScreenSize();
-                        int height16 =200;
-                        int width16 =300;
-                        setBounds((dimension16.width- width16)/2,(dimension16.height- height16)/2, width16, height16);
-                        setLayout(new GridBagLayout());
-                        JComboBox<String> accountBox=new JComboBox<>();
-                        for (String key : Swing.user.getAccountsKeys()) {
-                            accountBox.addItem(key);
-                        }
-                        accountBox.setSelectedItem(((Transfer) operation).getAccountIn());
-                        accountBox.removeItem(((Transfer) operation).getAccountOut());
-                        add(new JLabel("Income Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                new Insets(0, 20, 0, 0), 0, 0));
-                        add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
-                                new Insets(0, 20, 0, 0), 0, 0));
-                        JButton cancelButton=new JButton("Cancel");
-                        cancelButton.addActionListener(e16 -> dispose());
-                        JButton confirmButton=new JButton("Confirm");
-                        confirmButton.addActionListener(e->{
-                            if (!accountBox.getSelectedItem().equals(((Transfer) operation).getAccountIn())) {
-                                String oldAccount=((Transfer) operation).getAccountIn();
-                                String newAccount=(String)accountBox.getSelectedItem();
-                                Swing.user.setTransferIn(OperationsPanel.TToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)), newAccount);
-                                String line = operation.getDate() + "\n" + "from \"" + ((Transfer) operation).getAccountOut() + "\" to \"" + ((Transfer) operation).getAccountIn() + "\": " + String.format("%.2f", operation.getSum()) + " UAH";
-                                OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                accountInLabel.setText(newAccount);
-                                AccountsPanel.AButtons.get(oldAccount).setText(oldAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(oldAccount))+" UAH");
-                                AccountsPanel.AButtons.get(newAccount).setText(newAccount+": "+String.format("%.2f", Swing.user.getAccountBalance(newAccount))+" UAH");
-                                UsersChanger.writeUsersInFile(Swing.users);
-                                Swing.accountsPanel.revalidate();
-                                Swing.operationsPanel.revalidate();
-                            }
-                            dispose();
-                        });
-                        add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                new Insets(20,0,0,0),0,0));
-                        add(confirmButton,new GridBagConstraints(1,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                                new Insets(20,20,0,0),0,0));
-                    }
-                };
-                dialog.setVisible(true);
-            });
-            add(editAccountInButton,new GridBagConstraints(2,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                    new Insets(30,15,0,0),0,0));
-            if (((Transfer) operation).getAccountIn().equals("Unknown") || ((Transfer) operation).getAccountOut().equals("Unknown")){
-                editAccountInButton.setEnabled(false);
-                editAccountOutButton.setEnabled(false);
-                unknownComponent=true;
-            }
-        }
         // adding date panel
         tempPanel=new JPanel();
         tempPanel.setLayout(new BorderLayout());
@@ -384,7 +256,5 @@ public class OperationDetails extends JDialog {
         okButton.addActionListener(e -> dispose());
         add(okButton,new GridBagConstraints(1,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),30,0));
-        if (unknownComponent)
-            editSumButton.setEnabled(false);
     }
 }
