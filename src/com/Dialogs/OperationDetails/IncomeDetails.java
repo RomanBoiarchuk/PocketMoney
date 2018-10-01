@@ -14,9 +14,8 @@ import static com.company.OperationsPanel.IToolbar;
 public class IncomeDetails extends OperationDetails {
     public IncomeDetails(Income income){
         super(income);
-        JPanel tempPanel;
         JLabel sourceLabel=new JLabel(income.getSource());
-        tempPanel=new JPanel();
+        JPanel tempPanel=new JPanel();
         tempPanel.setLayout(new BorderLayout());
         tempPanel.add(new JLabel("Source: "),BorderLayout.WEST);
         tempPanel.add(sourceLabel,BorderLayout.EAST);
