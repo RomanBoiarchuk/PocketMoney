@@ -37,8 +37,6 @@ abstract public class Operation implements Serializable {
     public Date getDate() {
         return date;
     }
-
-    abstract void print();
     }
 
 

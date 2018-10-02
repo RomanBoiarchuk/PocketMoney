@@ -6,14 +6,14 @@ import java.util.*;
 public class User implements Serializable{
 
     private static final long serialVersionUID = -8081303584624561024L;
-    String name;
-     double balance=0d;
-     Map<String,Double> accounts=new HashMap();
-     List<Operation> operations=new LinkedList();
-     List<Outgoing> outgoings =new LinkedList();
-     List<Transfer> transfers=new LinkedList();
-     List<Income> incomes=new LinkedList();
-     Set<String> categories=new HashSet<>();
+    private String name;
+    private double balance=0d;
+    private Map<String,Double> accounts=new HashMap<>();
+    private List<Operation> operations=new LinkedList<>();
+    private List<Outgoing> outgoings =new LinkedList<>();
+    private List<Transfer> transfers=new LinkedList<>();
+    private List<Income> incomes=new LinkedList<>();
+    private Set<String> categories=new HashSet<>();
 
     public boolean accountExists(String account){
         Set<String> keys=accounts.keySet();
@@ -55,12 +55,10 @@ public class User implements Serializable{
         }
         return categories;
     }
-
     public void addCategory(String category) throws IllegalArgumentException{
         if (categories.contains(category)) throw new IllegalArgumentException();
         categories.add(category);
     }
-
     public void addOutgoing(double price, String goal, String account) throws IllegalArgumentException{
         if (!categories.contains(goal)) throw new IllegalArgumentException();
          Outgoing temp=new Outgoing(price,goal,account);
@@ -175,8 +173,8 @@ public class User implements Serializable{
     }
 
     public void setIncomeAccount(int index, String account) throws IllegalArgumentException{
-        Double sum=((Income)incomes.get(index)).sum;
-        String oldAccount=((Income)incomes.get(index)).account;
+        Double sum=incomes.get(index).sum;
+        String oldAccount=incomes.get(index).account;
         accounts.replace(oldAccount,(double)accounts.get(oldAccount)-sum);
         accounts.replace(account,(double)accounts.get(account)+sum);
         incomes.get(index).account=account;
@@ -246,7 +244,6 @@ public class User implements Serializable{
     public int getTransfersSize(){
         return transfers.size();
     }
-
 
     public User(String name) {
         this.name = name;

@@ -1,8 +1,5 @@
 package com.PocketMoney;
 
-
-import java.io.Serializable;
-
 public class Income extends Operation {
     private static final long serialVersionUID = -4279840767029269881L;
     String source;
@@ -19,15 +16,6 @@ public class Income extends Operation {
         this.source = source;
         this.account = account;
     }
-         void print(){
-        System.out.print(date+": from "+source+" to "+account+": "+sum+" UAH; ");
-        if (comment!=null){
-            System.out.print("comment: "+comment);
-        }
-             System.out.println();
-    }
-
-
     public String getSource() {
         return source;
     }

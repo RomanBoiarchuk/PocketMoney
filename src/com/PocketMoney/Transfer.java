@@ -1,9 +1,5 @@
 package com.PocketMoney;
 
-
-import java.io.Serializable;
-import java.util.Date;
-
 public class Transfer extends Operation{
     private static final long serialVersionUID = -5436907653167685370L;
     String accountOut;
@@ -19,13 +15,6 @@ public class Transfer extends Operation{
         super(sum);
         this.accountOut = accountOut;
         this.accountIn = accountIn;
-    }
-    void print(){
-        System.out.print(date+": from "+accountOut+" to "+accountIn+": "+sum+" UAH; ");
-        if (comment!=null){
-            System.out.print("comment: "+comment);
-        }
-        System.out.println();
     }
     public void setUnknownAccountIn(){
         accountIn="Unknown";

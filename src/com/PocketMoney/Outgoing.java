@@ -1,7 +1,5 @@
 package com.PocketMoney;
 
-import java.io.Serializable;
-import java.util.Date;
 
     public class Outgoing extends Operation {
         private static final long serialVersionUID = 5610883753266549574L;
@@ -17,14 +15,6 @@ import java.util.Date;
         this.goal=goal;
         this.account=account;
     }
-         void print(){
-        System.out.print(date+": from "+account+"; goal:  "+goal+": "+sum+" UAH; ");
-        if (comment!=null){
-            System.out.print("comment: "+comment);
-        }
-             System.out.println();
-    }
-
         public String getGoal() {
             return goal;
         }
