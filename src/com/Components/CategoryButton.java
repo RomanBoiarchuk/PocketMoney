@@ -47,7 +47,7 @@ public class CategoryButton extends JButton {
         popupMenu.add(deleteItem);
         setComponentPopupMenu(popupMenu);
         addActionListener(e-> {
-                AddOutgoing addOutgoing = new AddOutgoing((JButton) e.getSource());
+                AddOutgoing addOutgoing = new AddOutgoing(CategoriesPanel.BCategories.get(e.getSource()));
                 addOutgoing.setVisible(true);
         });
         CategoriesPanel.ItemsCategories.put(deleteItem,category);

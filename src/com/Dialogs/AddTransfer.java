@@ -1,6 +1,5 @@
 package com.Dialogs;
 
-import com.Components.CommentArea;
 import com.Components.OperationButton;
 import com.PocketMoney.Transfer;
 import com.company.UsersChanger;
@@ -11,17 +10,9 @@ import com.company.OperationsPanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class AddTransfer extends JDialog {
+public class AddTransfer extends AddOperation {
     public AddTransfer(String accountOut){
-        super(Swing.frame,"AddTransfer",true);
-        // decorating dialog window
-        setBackground(Color.orange);
-        Toolkit toolkit=Toolkit.getDefaultToolkit();
-        Dimension dimension=toolkit.getScreenSize();
-        int height=300;
-        int width=500;
-        setBounds((dimension.width-width)/2,(dimension.height-height)/2,width,height);
-        setLayout(new GridBagLayout());
+        super("Transfer");
         add(new JLabel("Income Account "),new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(0,0,0,0),0,0));
         JComboBox<String> accountInBox=new JComboBox<>();
@@ -32,15 +23,6 @@ public class AddTransfer extends JDialog {
         }
         add(accountInBox,new GridBagConstraints(1,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(0,20,0,0),0,0));
-        add(new JLabel("Sum "),new GridBagConstraints(0,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                new Insets(20,0,0,0),0,0));
-        JTextField sumField=new JTextField(20);
-        add(sumField,new GridBagConstraints(1,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                new Insets(20,20,0,0),0,0));
-        JTextArea comment=new CommentArea("Comment",3,5);
-        JScrollPane commentPane=new JScrollPane(comment);
-        add(commentPane,new GridBagConstraints(0,2,6,3,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
-                new Insets(20,0,0,0),100,80));
         JButton confirm=new JButton("Confirm");
         JButton cancel=new JButton("Cancel");
         add(confirm,new GridBagConstraints(0,5,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
