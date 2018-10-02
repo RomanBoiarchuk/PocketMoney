@@ -1,6 +1,6 @@
 package com.Components;
 
-import com.Dialogs.AddOutgoing;
+import com.Dialogs.AddOperation.AddOutgoing;
 import com.PocketMoney.Outgoing;
 import com.company.UsersChanger;
 import com.company.Swing;

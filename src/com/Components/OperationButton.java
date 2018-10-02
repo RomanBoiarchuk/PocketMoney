@@ -1,9 +1,6 @@
 package com.Components;
 
-import com.Dialogs.OperationDetails.IncomeDetails;
-import com.Dialogs.OperationDetails.OperationDetails;
-import com.Dialogs.OperationDetails.OutgoingDetails;
-import com.Dialogs.OperationDetails.TransferDetails;
+import com.Dialogs.OperationDetails.*;
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;

@@ -1,4 +1,4 @@
-package com.Dialogs;
+package com.Dialogs.AddOperation;
 
 import com.Components.OperationButton;
 import com.PocketMoney.Outgoing;
