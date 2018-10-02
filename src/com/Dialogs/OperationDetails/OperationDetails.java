@@ -40,15 +40,8 @@ public abstract class OperationDetails extends JDialog {
 
         editSumButton=new JButton("edit");
         editSumButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Operation",true){
+            JDialog dialog=new FieldChangerWindow("Operation"){
                 {
-                    // decorating editSum window
-                    Toolkit toolkit17 =Toolkit.getDefaultToolkit();
-                    Dimension dimension17 = toolkit17.getScreenSize();
-                    int height17 =200;
-                    int width17 =300;
-                    setBounds((dimension17.width- width17)/2,(dimension17.height- height17)/2, width17, height17);
-                    setLayout(new GridBagLayout());
                     JTextField sumField=new JTextField(20);
                     sumField.setAutoscrolls(false);
                     add(new JLabel("Sum"),new GridBagConstraints(0,0,2,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
@@ -147,15 +140,8 @@ public abstract class OperationDetails extends JDialog {
             add(addCommentButton,new GridBagConstraints(0,6,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                     new Insets(30,0,0,30),0,0));
         addCommentButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Operation",true){
+            JDialog dialog=new FieldChangerWindow("Operation"){
                 {
-                    // decorating addComment window
-                    Toolkit toolkit18 = Toolkit.getDefaultToolkit();
-                    Dimension dimension18 = toolkit18.getScreenSize();
-                    int height18 = 200;
-                    int width18 = 300;
-                    setBounds((dimension18.width - width18) / 2, (dimension18.height - height18) / 2, width18, height18);
-                    setLayout(new GridBagLayout());
                     JTextArea newCommentArea=new JTextArea(3,5);
                     newCommentArea.setLineWrap(true);
                     JScrollPane newCommentPane=new JScrollPane(newCommentArea);
@@ -189,15 +175,8 @@ public abstract class OperationDetails extends JDialog {
             dialog.setVisible(true);
         });
         editCommentButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Operation",true){
+            JDialog dialog=new FieldChangerWindow("Operation"){
                 {
-                    // decorating editComment window
-                    Toolkit toolkit19 = Toolkit.getDefaultToolkit();
-                    Dimension dimension19 = toolkit19.getScreenSize();
-                    int height19 = 200;
-                    int width19 = 300;
-                    setBounds((dimension19.width - width19) / 2, (dimension19.height - height19) / 2, width19, height19);
-                    setLayout(new GridBagLayout());
                     JTextArea newCommentArea=new JTextArea(3,5);
                     newCommentArea.setText(operation.getComment());
                     newCommentArea.setLineWrap(true);

@@ -18,14 +18,8 @@ public class OutgoingDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editAccountButton=new JButton("edit");
         editAccountButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Outgoing",true){
+            JDialog dialog=new FieldChangerWindow("Outgoing"){
                 {
-                    Toolkit toolkit13 =Toolkit.getDefaultToolkit();
-                    Dimension dimension13 = toolkit13.getScreenSize();
-                    int height13 =200;
-                    int width13 =300;
-                    setBounds((dimension13.width- width13)/2,(dimension13.height- height13)/2, width13, height13);
-                    setLayout(new GridBagLayout());
                     JComboBox<String> accountBox=new JComboBox<>();
                     for (String key : Swing.user.getAccountsKeys()) {
                         accountBox.addItem(key);
@@ -75,15 +69,8 @@ public class OutgoingDetails extends OperationDetails {
         JButton editCategoryButton=new JButton("edit");
 
         editCategoryButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Outgoing",true){
+            JDialog dialog=new FieldChangerWindow("Outgoing"){
                 {
-                    // decorating editCategory window
-                    Toolkit toolkit14 =Toolkit.getDefaultToolkit();
-                    Dimension dimension14 = toolkit14.getScreenSize();
-                    int height14 =200;
-                    int width14 =300;
-                    setBounds((dimension14.width- width14)/2,(dimension14.height- height14)/2, width14, height14);
-                    setLayout(new GridBagLayout());
                     JComboBox<String> categoriesBox=new JComboBox<>();
                     for (String key : Swing.user.getOutgoingsCategories().keySet()) {
                         categoriesBox.addItem(key);

@@ -21,14 +21,8 @@ public class TransferDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editAccountOutButton=new JButton("edit");
         editAccountOutButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Transfer",true){
+            JDialog dialog=new FieldChangerWindow("Transfer"){
                 {
-                    Toolkit toolkit15 =Toolkit.getDefaultToolkit();
-                    Dimension dimension15 = toolkit15.getScreenSize();
-                    int height15 =200;
-                    int width15 =300;
-                    setBounds((dimension15.width- width15)/2,(dimension15.height- height15)/2, width15, height15);
-                    setLayout(new GridBagLayout());
                     JComboBox<String> accountBox=new JComboBox<>();
                     for (String key : Swing.user.getAccountsKeys()) {
                         accountBox.addItem(key);
@@ -77,14 +71,8 @@ public class TransferDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editAccountInButton=new JButton("edit");
         editAccountInButton.addActionListener(e -> {
-            JDialog dialog=new JDialog(Swing.frame,"Transfer",true){
+            JDialog dialog=new FieldChangerWindow("Transfer"){
                 {
-                    Toolkit toolkit16 =Toolkit.getDefaultToolkit();
-                    Dimension dimension16 = toolkit16.getScreenSize();
-                    int height16 =200;
-                    int width16 =300;
-                    setBounds((dimension16.width- width16)/2,(dimension16.height- height16)/2, width16, height16);
-                    setLayout(new GridBagLayout());
                     JComboBox<String> accountBox=new JComboBox<>();
                     for (String key : Swing.user.getAccountsKeys()) {
                         accountBox.addItem(key);
