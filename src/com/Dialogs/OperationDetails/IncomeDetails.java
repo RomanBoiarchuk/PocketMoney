@@ -1,6 +1,7 @@
 package com.Dialogs.OperationDetails;
 
 import com.PocketMoney.Income;
+import com.PocketMoney.Operation;
 import com.company.AccountsPanel;
 import com.company.OperationsPanel;
 import com.company.Swing;
@@ -12,6 +13,18 @@ import java.awt.*;
 import static com.company.OperationsPanel.IToolbar;
 
 public class IncomeDetails extends OperationDetails {
+    @Override
+    void changeSum(Operation operation,double newSum) {
+        Swing.user.setIncomeSum(IToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
+        AccountsPanel.AButtons.get(((Income)operation).getAccount()).setText(((Income)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income)operation).getAccount()))+" UAH");
+        AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+        sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
+        String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",newSum)+" UAH";
+        OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+        UsersChanger.writeUsersInFile(Swing.users);
+        Swing.accountsPanel.revalidate();
+        Swing.operationsPanel.revalidate();
+    }
     public IncomeDetails(Income income){
         super(income);
         JLabel sourceLabel=new JLabel(income.getSource());
@@ -107,6 +120,9 @@ public class IncomeDetails extends OperationDetails {
         });
         add(editAccountButton,new GridBagConstraints(2,1,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(30,15,0,0),0,0));
+        editSumButton.addActionListener(e->{
+
+        });
         if (income.getAccount().equals("Unknown")){
             editSourceButton.setEnabled(false);
             editAccountButton.setEnabled(false);

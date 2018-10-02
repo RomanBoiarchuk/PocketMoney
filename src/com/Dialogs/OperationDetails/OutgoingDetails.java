@@ -1,5 +1,6 @@
 package com.Dialogs.OperationDetails;
 
+import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
 import com.company.*;
 
@@ -7,6 +8,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class OutgoingDetails extends OperationDetails {
+    @Override
+    void changeSum(Operation operation,double newSum) {
+        double oldSum=operation.getSum();
+        Swing.user.setOutgoingSum(OperationsPanel.OToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
+        AccountsPanel.AButtons.get(((Outgoing)operation).getAccount()).setText(((Outgoing)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing)operation).getAccount()))+" UAH");
+        AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
+        sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
+        String line=operation.getDate()+"\n"+"from \""+((Outgoing)operation).getAccount()+"\" to \""+((Outgoing)operation).getGoal()+"\": "+String.format("%.2f",newSum)+" UAH";
+        OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+        CategoriesPanel.categoriesMap.replace(((Outgoing)operation).getGoal(),CategoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())-oldSum+newSum);
+        CategoriesPanel.CButtons.get(((Outgoing)operation).getGoal()).setText(((Outgoing)operation).getGoal() + ": " + String.format("%.2f",CategoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())) + " UAH");
+        UsersChanger.writeUsersInFile(Swing.users);
+        Swing.accountsPanel.revalidate();
+        Swing.categoriesPanel.revalidate();
+        Swing.operationsPanel.revalidate();
+    }
+
     public OutgoingDetails(Outgoing outgoing){
         super(outgoing);
         JLabel accountLabel=new JLabel(outgoing.getAccount());

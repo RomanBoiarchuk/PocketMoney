@@ -1,18 +1,13 @@
 package com.Dialogs.OperationDetails;
-
-import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
-import com.PocketMoney.Outgoing;
-import com.PocketMoney.Transfer;
 import com.company.*;
-
 import javax.swing.*;
 import java.awt.*;
 
-import static com.company.OperationsPanel.IToolbar;
-
 public abstract class OperationDetails extends JDialog {
     JButton editSumButton;
+    JLabel sumLabel;
+    abstract void changeSum(Operation operation,double newSum);
     public OperationDetails(Operation operation){
         super(Swing.frame,"Operation",true);
         // decorating dialog window
@@ -30,7 +25,7 @@ public abstract class OperationDetails extends JDialog {
         tempPanel.add(new JLabel(String.valueOf(operation.getDate())),BorderLayout.EAST);
         add(tempPanel,new GridBagConstraints(0,3,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),50,0));
-        JLabel sumLabel=new JLabel(String.format("%.2f",operation.getSum())+" UAH");
+        sumLabel=new JLabel(String.format("%.2f",operation.getSum())+" UAH");
         tempPanel=new JPanel();
         tempPanel.setLayout(new BorderLayout());
         tempPanel.add(new JLabel("Sum: "),BorderLayout.WEST);
@@ -54,7 +49,6 @@ public abstract class OperationDetails extends JDialog {
                     confirmButton.addActionListener(e->{
                         boolean isError=false;
                         double newSum=0;
-                        double oldSum=operation.getSum();
                         try{
                             newSum=Double.valueOf(sumField.getText().replaceAll(",","."));
                         }
@@ -63,49 +57,8 @@ public abstract class OperationDetails extends JDialog {
                             isError=true;
                         }
                         if (!isError){
-                            if (operation.getClass().equals(Income.class)){
-                                Swing.user.setIncomeSum(IToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
-                                AccountsPanel.AButtons.get(((Income)operation).getAccount()).setText(((Income)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Income)operation).getAccount()))+" UAH");
-                                AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                                sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
-                                String line=operation.getDate()+"\n"+"from \""+((Income)operation).getSource()+"\" to \""+((Income)operation).getAccount()+"\": "+String.format("%.2f",newSum)+" UAH";
-                                OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                UsersChanger.writeUsersInFile(Swing.users);
-                                Swing.accountsPanel.revalidate();
-                                Swing.operationsPanel.revalidate();
-                                dispose();
-                            }
-                            else
-                            {
-                                if (operation.getClass().equals(Outgoing.class)){
-                                    Swing.user.setOutgoingSum(OperationsPanel.OToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
-                                    AccountsPanel.AButtons.get(((Outgoing)operation).getAccount()).setText(((Outgoing)operation).getAccount()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Outgoing)operation).getAccount()))+" UAH");
-                                    AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
-                                    sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
-                                    String line=operation.getDate()+"\n"+"from \""+((Outgoing)operation).getAccount()+"\" to \""+((Outgoing)operation).getGoal()+"\": "+String.format("%.2f",newSum)+" UAH";
-                                    OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                    CategoriesPanel.categoriesMap.replace(((Outgoing)operation).getGoal(),CategoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())-oldSum+newSum);
-                                    CategoriesPanel.CButtons.get(((Outgoing)operation).getGoal()).setText(((Outgoing)operation).getGoal() + ": " + String.format("%.2f",CategoriesPanel.categoriesMap.get(((Outgoing)operation).getGoal())) + " UAH");
-                                    UsersChanger.writeUsersInFile(Swing.users);
-                                    Swing.accountsPanel.revalidate();
-                                    Swing.categoriesPanel.revalidate();
-                                    Swing.operationsPanel.revalidate();
-                                    dispose();
-                                }
-                                else
-                                {
-                                    Swing.user.setTransferSum(OperationsPanel.TToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
-                                    AccountsPanel.AButtons.get(((Transfer)operation).getAccountIn()).setText(((Transfer)operation).getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountIn()))+" UAH");
-                                    AccountsPanel.AButtons.get(((Transfer)operation).getAccountOut()).setText(((Transfer)operation).getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountOut()))+" UAH");
-                                    sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
-                                    String line=operation.getDate()+"\n"+"from \""+((Transfer)operation).getAccountOut()+"\" to \""+((Transfer)operation).getAccountIn()+"\": "+String.format("%.2f",newSum)+" UAH";
-                                    OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
-                                    UsersChanger.writeUsersInFile(Swing.users);
-                                    Swing.accountsPanel.revalidate();
-                                    Swing.operationsPanel.revalidate();
-                                    dispose();
-                                }
-                            }
+                            changeSum(operation,newSum);
+                            dispose();
                         }
                     });
                     add(cancelButton,new GridBagConstraints(0,2,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,

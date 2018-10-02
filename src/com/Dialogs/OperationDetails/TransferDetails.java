@@ -1,5 +1,6 @@
 package com.Dialogs.OperationDetails;
 
+import com.PocketMoney.Operation;
 import com.PocketMoney.Transfer;
 import com.company.AccountsPanel;
 import com.company.OperationsPanel;
@@ -10,6 +11,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TransferDetails extends OperationDetails {
+    @Override
+    void changeSum(Operation operation, double newSum) {
+        Swing.user.setTransferSum(OperationsPanel.TToolbar.getComponentIndex(OperationsPanel.OperationsButtons.get(operation)),newSum);
+        AccountsPanel.AButtons.get(((Transfer)operation).getAccountIn()).setText(((Transfer)operation).getAccountIn()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountIn()))+" UAH");
+        AccountsPanel.AButtons.get(((Transfer)operation).getAccountOut()).setText(((Transfer)operation).getAccountOut()+": "+String.format("%.2f", Swing.user.getAccountBalance(((Transfer)operation).getAccountOut()))+" UAH");
+        sumLabel.setText(String.format("%.2f",operation.getSum())+" UAH");
+        String line=operation.getDate()+"\n"+"from \""+((Transfer)operation).getAccountOut()+"\" to \""+((Transfer)operation).getAccountIn()+"\": "+String.format("%.2f",newSum)+" UAH";
+        OperationsPanel.OperationsButtons.get(operation).setText("<html>" + line.replaceAll("\\n", "<br>") + "</html>");
+        UsersChanger.writeUsersInFile(Swing.users);
+        Swing.accountsPanel.revalidate();
+        Swing.operationsPanel.revalidate();
+    }
+
     public TransferDetails(Transfer transfer){
         super(transfer);
         JLabel accountOutLabel=new JLabel(transfer.getAccountOut());
