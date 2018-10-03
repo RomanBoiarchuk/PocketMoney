@@ -1,6 +1,9 @@
 package com.company;
 
-import com.Components.OperationButton;
+import com.Components.OperationButton.IncomeButton;
+import com.Components.OperationButton.OperationButton;
+import com.Components.OperationButton.OutgoingButton;
+import com.Components.OperationButton.TransferButton;
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
@@ -15,7 +18,7 @@ public class OperationsPanel {
     public static JToolBar OToolbar; // Outgoings toolbar
     public static JToolBar IToolbar; // Incomes toolbar
     public static JToolBar TToolbar; // Transfers toolbar
-    public static Map<Integer,JButton> OButtons; // Outgoing index: button
+    public static Map<Integer,JButton> OButtons; // OutgoingButton index: button
     public static Map<Integer,JButton> IButtons; // Income index: button
     public static Map<Integer,JButton> TButtons; // Transfer index: button
     public static Map<JMenuItem,Operation> ItemsOperations;
@@ -46,7 +49,7 @@ public class OperationsPanel {
         for (int i=0;i<Swing.user.getIncomesSize();i++) {
             income=Swing.user.getIncome(i);
             line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+income.getAccount()+"\": "+String.format("%.2f",income.getSum())+" UAH";
-            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
+            tempButton=new IncomeButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
             IToolbar.add(tempButton);
             IButtons.put(i,tempButton);
         }
@@ -64,7 +67,7 @@ public class OperationsPanel {
         for (int i=0;i<Swing.user.getTransfersSize();i++) {
             transfer=Swing.user.getTransfer(i);
             line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
-            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",transfer);
+            tempButton=new TransferButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",transfer);
             TToolbar.add(tempButton);
             TButtons.put(i,tempButton);
         }
@@ -82,7 +85,7 @@ public class OperationsPanel {
         for (int i=0;i<Swing.user.getOutgoingsSize();i++) {
             outgoing=Swing.user.getOutgoing(i);
             line=outgoing.getDate()+"\n"+"from \""+outgoing.getAccount()+"\" to \""+outgoing.getGoal()+"\": "+String.format("%.2f",outgoing.getSum())+" UAH";
-            tempButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
+            tempButton=new OutgoingButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
             OToolbar.add(tempButton);
             OButtons.put(i,tempButton);
         }

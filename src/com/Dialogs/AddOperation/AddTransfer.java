@@ -1,6 +1,6 @@
 package com.Dialogs.AddOperation;
 
-import com.Components.OperationButton;
+import com.Components.OperationButton.TransferButton;
 import com.PocketMoney.Transfer;
 import com.company.UsersChanger;
 import com.company.Swing;
@@ -52,7 +52,7 @@ public class AddTransfer extends AddOperation {
                 AccountsPanel.AButtons.get(accountOut).setText(accountOut+": "+String.format("%.2f",Swing.user.getAccountBalance(accountOut))+" UAH");
                 Transfer transfer =Swing.user.getTransfer(Swing.user.getTransfersSize()-1);
                 String line=transfer.getDate()+"\n"+"from \""+transfer.getAccountOut()+"\" to \""+transfer.getAccountIn()+"\": "+String.format("%.2f",transfer.getSum())+" UAH";
-                JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", transfer);
+                JButton operationButton=new TransferButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", transfer);
                 OperationsPanel.TButtons.put(OperationsPanel.TToolbar.getComponentCount(),operationButton);
                 OperationsPanel.TToolbar.add(operationButton);
                 JOptionPane.showMessageDialog(Swing.frame,"Transfer has benn completed!");

@@ -36,7 +36,7 @@ public class OutgoingDetails extends OperationDetails {
                 new Insets(30,0,0,0),0,0));
         JButton editAccountButton=new JButton("edit");
         editAccountButton.addActionListener(e -> {
-            JDialog dialog=new FieldChangerWindow("Outgoing"){
+            JDialog dialog=new FieldChangerWindow("OutgoingButton"){
                 {
                     JComboBox<String> accountBox=new JComboBox<>();
                     for (String key : Swing.user.getAccountsKeys()) {
@@ -87,7 +87,7 @@ public class OutgoingDetails extends OperationDetails {
         JButton editCategoryButton=new JButton("edit");
 
         editCategoryButton.addActionListener(e -> {
-            JDialog dialog=new FieldChangerWindow("Outgoing"){
+            JDialog dialog=new FieldChangerWindow("OutgoingButton"){
                 {
                     JComboBox<String> categoriesBox=new JComboBox<>();
                     for (String key : Swing.user.getOutgoingsCategories().keySet()) {

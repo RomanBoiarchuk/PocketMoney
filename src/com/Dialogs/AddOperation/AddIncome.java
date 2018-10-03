@@ -1,6 +1,6 @@
 package com.Dialogs.AddOperation;
 
-import com.Components.OperationButton;
+import com.Components.OperationButton.IncomeButton;
 import com.PocketMoney.Income;
 import com.company.UsersChanger;
 import com.company.Swing;
@@ -50,7 +50,7 @@ public class AddIncome extends AddOperation {
                 AccountsPanel.balanceLabel.setText(String.format("%.2f", Swing.user.getBalance()));
                 Income income=Swing.user.getIncome(Swing.user.getIncomesSize()-1);
                 String line=income.getDate()+"\n"+"from \""+income.getSource()+"\" to \""+account+"\": "+String.format("%.2f",sum)+" UAH";
-                JButton operationButton=new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
+                JButton operationButton=new IncomeButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>", income);
                 OperationsPanel.IButtons.put(OperationsPanel.IToolbar.getComponentCount(),operationButton);
                 OperationsPanel.IToolbar.add(operationButton);
                 JOptionPane.showMessageDialog(Swing.frame,"Income has benn successfully added!");

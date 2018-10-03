@@ -29,7 +29,7 @@ public class TransferDetails extends OperationDetails {
         JLabel accountOutLabel=new JLabel(transfer.getAccountOut());
         JPanel tempPanel=new JPanel();
         tempPanel.setLayout(new BorderLayout());
-        tempPanel.add(new JLabel("Outgoing account: "),BorderLayout.WEST);
+        tempPanel.add(new JLabel("OutgoingButton account: "),BorderLayout.WEST);
         tempPanel.add(accountOutLabel,BorderLayout.EAST);
         add(tempPanel,new GridBagConstraints(0,0,1,1,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL,
                 new Insets(30,0,0,0),0,0));
@@ -43,7 +43,7 @@ public class TransferDetails extends OperationDetails {
                     }
                     accountBox.setSelectedItem(transfer.getAccountOut());
                     accountBox.removeItem(transfer.getAccountIn());
-                    add(new JLabel("Outgoing Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
+                    add(new JLabel("OutgoingButton Account"), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
                             new Insets(0, 20, 0, 0), 0, 0));
                     add(accountBox, new GridBagConstraints(1, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
                             new Insets(0, 20, 0, 0), 0, 0));

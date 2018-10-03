@@ -1,6 +1,6 @@
 package com.Dialogs.AddOperation;
 
-import com.Components.OperationButton;
+import com.Components.OperationButton.OutgoingButton;
 import com.PocketMoney.Outgoing;
 import com.company.*;
 
@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class AddOutgoing extends AddOperation {
     public AddOutgoing(String category) {
-        super("Outgoing");
+        super("OutgoingButton");
         add(new JLabel("Account "), new GridBagConstraints(0, 0, 1, 1, 0, 0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL,
                 new Insets(0, 0, 0, 0), 0, 0));
         JComboBox<String> accountBox = new JComboBox<>();
@@ -47,10 +47,10 @@ public class AddOutgoing extends AddOperation {
                 CategoriesPanel.CButtons.get(category).setText(outgoing.getGoal() + ": " + String.format("%.2f",CategoriesPanel.categoriesMap.get(outgoing.getGoal())) + " UAH");
                 AccountsPanel.balanceLabel.setText(String.format("%.2f",Swing.user.getBalance()));
                 String line = outgoing.getDate() + "\n" + "from \"" + outgoing.getAccount() + "\" to \"" + outgoing.getGoal() + "\": " + String.format("%.2f",outgoing.getSum()) + " UAH";
-                JButton operationButton = new OperationButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
+                JButton operationButton = new OutgoingButton("<html>" + line.replaceAll("\\n", "<br>") + "</html>",outgoing);
                 OperationsPanel.OButtons.put(OperationsPanel.OToolbar.getComponentCount(), operationButton);
                 OperationsPanel.OToolbar.add(operationButton);
-                JOptionPane.showMessageDialog(Swing.frame, "Outgoing has benn successfully added!");
+                JOptionPane.showMessageDialog(Swing.frame, "OutgoingButton has benn successfully added!");
                 UsersChanger.writeUsersInFile(Swing.users);
                 dispose();
             }
