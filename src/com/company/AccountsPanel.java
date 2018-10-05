@@ -18,7 +18,7 @@ public class AccountsPanel {
     public static JToolBar AToolbar; // toolbar with account's buttons
     public static JPanel panel=new JPanel();
     static JButton addAccountButton;
-    static JPanel getPanel(){
+    public static JPanel getPanel(){
         JPanel panel=new JPanel();
         // decorating panel
         panel.setBackground(Color.ORANGE);

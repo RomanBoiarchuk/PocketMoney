@@ -18,7 +18,7 @@ public class CategoriesPanel {
     public static Map<String, Double> categoriesMap; // category: sum of outgoings
     public static JPanel panel;
 
-    static JPanel getPanel() {
+    public static JPanel getPanel() {
         //decorating panel
         panel = new JPanel();
         panel.setBackground(Color.ORANGE);

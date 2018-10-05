@@ -23,7 +23,7 @@ public class OperationsPanel {
     public static Map<Integer,JButton> TButtons; // Transfer index: button
     public static Map<JMenuItem,Operation> ItemsOperations;
     public static Map<Operation,JButton> OperationsButtons;
-    static JPanel getPanel(){
+    public static JPanel getPanel(){
 
         JPanel panel=new JPanel();
         panel.setBackground(Color.ORANGE);
