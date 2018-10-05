@@ -40,7 +40,6 @@ public class Swing {
             }
 
         }
-
         user=users.get(0);
         frame = Frame.getFrame();
         mainPanel=new JPanel();
@@ -100,9 +99,6 @@ public class Swing {
         northButtonsPanel.add(changeUserButton);
         northButtonsPanel.setBackground(Color.CYAN);
 
-        // layout of labels, buttons, panels
-        nameLabel.setBorder(new EmptyBorder(0,0,0,0));
-        northButtonsPanel.setBorder(new EmptyBorder(0,0,0,0));
         northPanel.add(northButtonsPanel);
         frame.add(northPanel,BorderLayout.NORTH);
 
@@ -184,7 +180,7 @@ public class Swing {
             return false;
     }
     static class ChangeUserDialog extends JDialog{
-        static Map<JMenuItem,JButton> ItemsButtons; // to get access to user by clicking menu item
+        Map<JMenuItem,JButton> ItemsButtons; // to get access to user by clicking menu item
         public ChangeUserDialog(){
             super(frame,"Users",true);
             Toolkit toolkit=Toolkit.getDefaultToolkit();
@@ -212,7 +208,7 @@ public class Swing {
                 changeNameItem.addActionListener(e -> {
                     String name=JOptionPane.showInputDialog(frame,"User name");
                     boolean isError=false;
-                    if (!name.trim().equals("") && name.length()<=20) {
+                    if (name!=null && !(name.trim().equals("") && name.length()<=20)) {
                         for (User user1:users){
                             if (user1.getName().trim().equals(name.trim())){
                                 JOptionPane.showMessageDialog(frame,"User with such name already exists!","Error",JOptionPane.ERROR_MESSAGE);
@@ -233,6 +229,7 @@ public class Swing {
                         }
                     }
                     else {
+                        if (name!=null)
                         JOptionPane.showMessageDialog(frame,"Incorrect input!","Error",JOptionPane.ERROR_MESSAGE);
                     }
                 });
