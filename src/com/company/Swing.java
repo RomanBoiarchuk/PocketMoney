@@ -4,12 +4,9 @@ import com.Dialogs.ChangeUserDialog;
 import com.PocketMoney.User;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Swing {
     public static List<User> users;
@@ -36,7 +33,7 @@ public class Swing {
         if (users.isEmpty()){
             JOptionPane.showMessageDialog(frame,"You don't have any user. Add one!");
             // add new user if there are no users yet
-            if (!addUser()){
+            if (!UsersChanger.addUser()){
                 System.exit(0);
             }
 
@@ -84,7 +81,7 @@ public class Swing {
 
         nameLabel.setText(user.getName());
         JButton newUserButton=new JButton("New user");
-        newUserButton.addActionListener(e -> addUser());
+        newUserButton.addActionListener(e -> UsersChanger.addUser());
         JButton changeUserButton=new JButton("Users");
         changeUserButton.addActionListener(e -> {
             ChangeUserDialog changeUserDialog=new ChangeUserDialog();
@@ -123,61 +120,5 @@ public class Swing {
             operationsButton.setEnabled(false);
         });
         frame.setVisible(true);
-    }
-    static boolean addUser() {
-        // returns whether user was added
-        String name = JOptionPane.showInputDialog(frame,"User name");
-        if (name != null) {
-            boolean isError = false; // to check whether name is valid
-            if (name.trim().equals("")) {
-                JOptionPane.showMessageDialog(frame, "Incorrect input!", "Error", JOptionPane.ERROR_MESSAGE);
-                isError = true;
-            } else {
-                for (User user : users) {
-                    if (user.getName().trim().equals(name.trim())) {
-                        JOptionPane.showMessageDialog(frame, "User with such name already exists!", "Error", JOptionPane.ERROR_MESSAGE);
-                        isError = true;
-                        break;
-                    }
-                }
-            }
-            if (isError) {
-                return addUser();
-            }
-            else {
-                UsersChanger.pushForward(users, new User(name));
-                user = users.get(0);
-                // delete links to previous panels if they are not null
-                try{
-                    mainPanel.remove(accountsPanel);
-                    mainPanel.remove(categoriesPanel);
-                    mainPanel.remove(operationsPanel);
-                } catch (Exception e){}
-
-                // prepare frame for new user
-                accountsPanel = AccountsPanel.getPanel();
-                categoriesPanel = CategoriesPanel.getPanel();
-                operationsPanel = OperationsPanel.getPanel();
-                // add panels to card layout if it's first user
-                try{
-                    mainPanel.add(categoriesPanel,"categories");
-                    mainPanel.add(accountsPanel,"accounts");
-                    mainPanel.add(operationsPanel,"operations");
-                } catch (Exception e){}
-                nameLabel.setText(user.getName());
-                if (unableButton!=null) {
-                    unableButton.setEnabled(true);
-                    unableButton = categoriesButton;
-                    unableButton.setEnabled(false);
-                }
-                if (frame != null)
-                    frame.revalidate();
-                UsersChanger.writeUsersInFile(users);
-                JOptionPane.showMessageDialog(frame, "User has been successfully added!");
-                return true;
-            }
-        }
-        else
-            return false;
     }
 }

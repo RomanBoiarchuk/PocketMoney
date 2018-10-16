@@ -35,4 +35,60 @@ public class UsersChanger {
         users.add(user);
         users.addAll(newList);
     }
+    public static boolean addUser() {
+        // returns whether user was added
+        String name = JOptionPane.showInputDialog(Swing.frame,"User name");
+        if (name != null) {
+            boolean isError = false; // to check whether name is valid
+            if (name.trim().equals("")) {
+                JOptionPane.showMessageDialog(Swing.frame, "Incorrect input!", "Error", JOptionPane.ERROR_MESSAGE);
+                isError = true;
+            } else {
+                for (User user : Swing.users) {
+                    if (user.getName().trim().equals(name.trim())) {
+                        JOptionPane.showMessageDialog(Swing.frame, "User with such name already exists!", "Error", JOptionPane.ERROR_MESSAGE);
+                        isError = true;
+                        break;
+                    }
+                }
+            }
+            if (isError) {
+                return addUser();
+            }
+            else {
+                UsersChanger.pushForward(Swing.users, new User(name));
+                Swing.user = Swing.users.get(0);
+                // delete links to previous panels if they are not null
+                try{
+                    Swing.mainPanel.remove(Swing.accountsPanel);
+                    Swing.mainPanel.remove(Swing.categoriesPanel);
+                    Swing.mainPanel.remove(Swing.operationsPanel);
+                } catch (Exception e){}
+
+                // prepare frame for new user
+                Swing.accountsPanel = AccountsPanel.getPanel();
+                Swing.categoriesPanel = CategoriesPanel.getPanel();
+                Swing.operationsPanel = OperationsPanel.getPanel();
+                // add panels to card layout if it's first user
+                try{
+                    Swing.mainPanel.add(Swing.categoriesPanel,"categories");
+                    Swing.mainPanel.add(Swing.accountsPanel,"accounts");
+                    Swing.mainPanel.add(Swing.operationsPanel,"operations");
+                } catch (Exception e){}
+                Swing.nameLabel.setText(Swing.user.getName());
+                if (Swing.unableButton!=null) {
+                    Swing.unableButton.setEnabled(true);
+                    Swing.unableButton = Swing.categoriesButton;
+                    Swing.unableButton.setEnabled(false);
+                }
+                if (Swing.frame != null)
+                    Swing.frame.revalidate();
+                UsersChanger.writeUsersInFile(Swing.users);
+                JOptionPane.showMessageDialog(Swing.frame, "User has been successfully added!");
+                return true;
+            }
+        }
+        else
+            return false;
+    }
 }
