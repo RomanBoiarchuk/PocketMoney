@@ -1,14 +1,14 @@
 package com.Dialogs;
 
 import com.PocketMoney.User;
-import com.company.*;
+import com.Frame.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.company.Swing.*;
+import static com.Frame.Swing.*;
 
 public class ChangeUserDialog extends JDialog {
     Map<JMenuItem,JButton> ItemsButtons; // to get access to user by clicking menu item

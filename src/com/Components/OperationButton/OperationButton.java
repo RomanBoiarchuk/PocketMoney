@@ -5,7 +5,7 @@ import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
-import com.company.*;
+import com.Frame.*;
 import javax.swing.*;
 
 public abstract class OperationButton extends JButton {

@@ -2,7 +2,7 @@ package com.Dialogs.AddOperation;
 
 import com.Components.OperationButton.OutgoingButton;
 import com.PocketMoney.Outgoing;
-import com.company.*;
+import com.Frame.*;
 
 import javax.swing.*;
 import java.awt.*;

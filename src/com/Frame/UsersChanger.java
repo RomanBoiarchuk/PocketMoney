@@ -1,11 +1,9 @@
-package com.company;
+package com.Frame;
 import com.PocketMoney.*;
-import javafx.print.Collation;
 
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
-import java.util.Scanner;
 
 public class UsersChanger {
 

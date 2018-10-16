@@ -2,15 +2,15 @@ package com.Dialogs.OperationDetails;
 
 import com.PocketMoney.Income;
 import com.PocketMoney.Operation;
-import com.company.AccountsPanel;
-import com.company.OperationsPanel;
-import com.company.Swing;
-import com.company.UsersChanger;
+import com.Frame.AccountsPanel;
+import com.Frame.OperationsPanel;
+import com.Frame.Swing;
+import com.Frame.UsersChanger;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static com.company.OperationsPanel.IToolbar;
+import static com.Frame.OperationsPanel.IToolbar;
 
 public class IncomeDetails extends OperationDetails {
     @Override

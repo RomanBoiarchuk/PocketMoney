@@ -1,4 +1,4 @@
-package com.company;
+package com.Frame;
 
 import com.Dialogs.ChangeUserDialog;
 import com.PocketMoney.User;

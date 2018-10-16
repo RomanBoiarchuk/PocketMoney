@@ -2,7 +2,7 @@ package com.Dialogs.OperationDetails;
 
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
-import com.company.*;
+import com.Frame.*;
 
 import javax.swing.*;
 import java.awt.*;

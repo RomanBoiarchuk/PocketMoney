@@ -1,7 +1,7 @@
 package com.Dialogs.AddOperation;
 
 import com.Components.CommentArea;
-import com.company.Swing;
+import com.Frame.Swing;
 
 import javax.swing.*;
 import java.awt.*;

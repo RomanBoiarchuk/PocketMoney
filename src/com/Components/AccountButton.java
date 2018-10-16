@@ -5,10 +5,10 @@ import com.Dialogs.AddOperation.AddTransfer;
 import com.PocketMoney.Income;
 import com.PocketMoney.Outgoing;
 import com.PocketMoney.Transfer;
-import com.company.UsersChanger;
-import com.company.Swing;
-import com.company.AccountsPanel;
-import com.company.OperationsPanel;
+import com.Frame.UsersChanger;
+import com.Frame.Swing;
+import com.Frame.AccountsPanel;
+import com.Frame.OperationsPanel;
 
 import javax.swing.*;
 import java.awt.*;

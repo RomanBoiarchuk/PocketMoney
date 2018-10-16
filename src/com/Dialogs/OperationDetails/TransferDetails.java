@@ -2,10 +2,10 @@ package com.Dialogs.OperationDetails;
 
 import com.PocketMoney.Operation;
 import com.PocketMoney.Transfer;
-import com.company.AccountsPanel;
-import com.company.OperationsPanel;
-import com.company.Swing;
-import com.company.UsersChanger;
+import com.Frame.AccountsPanel;
+import com.Frame.OperationsPanel;
+import com.Frame.Swing;
+import com.Frame.UsersChanger;
 
 import javax.swing.*;
 import java.awt.*;

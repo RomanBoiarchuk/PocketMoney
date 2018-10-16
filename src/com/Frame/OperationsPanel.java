@@ -1,7 +1,6 @@
-package com.company;
+package com.Frame;
 
 import com.Components.OperationButton.IncomeButton;
-import com.Components.OperationButton.OperationButton;
 import com.Components.OperationButton.OutgoingButton;
 import com.Components.OperationButton.TransferButton;
 import com.PocketMoney.Income;

@@ -2,9 +2,9 @@ package com.Components.OperationButton;
 
 import com.PocketMoney.Operation;
 import com.PocketMoney.Transfer;
-import com.company.AccountsPanel;
-import com.company.OperationsPanel;
-import com.company.Swing;
+import com.Frame.AccountsPanel;
+import com.Frame.OperationsPanel;
+import com.Frame.Swing;
 
 public class TransferButton extends OperationButton {
     @Override

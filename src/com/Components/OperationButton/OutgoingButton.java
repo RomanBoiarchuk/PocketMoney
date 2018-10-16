@@ -2,10 +2,10 @@ package com.Components.OperationButton;
 
 import com.PocketMoney.Operation;
 import com.PocketMoney.Outgoing;
-import com.company.AccountsPanel;
-import com.company.CategoriesPanel;
-import com.company.OperationsPanel;
-import com.company.Swing;
+import com.Frame.AccountsPanel;
+import com.Frame.CategoriesPanel;
+import com.Frame.OperationsPanel;
+import com.Frame.Swing;
 
 public class OutgoingButton extends OperationButton{
     @Override

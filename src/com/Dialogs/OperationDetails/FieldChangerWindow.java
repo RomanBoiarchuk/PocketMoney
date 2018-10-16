@@ -1,6 +1,6 @@
 package com.Dialogs.OperationDetails;
 
-import com.company.Swing;
+import com.Frame.Swing;
 
 import javax.swing.*;
 import java.awt.*;
